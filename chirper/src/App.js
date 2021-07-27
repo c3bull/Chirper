@@ -1,13 +1,7 @@
-import * as React from "react"
-import Login from "./components/login"
-
-
 function App() {
-    return (
-        <div>
-            <Login />
-        </div>
-    )
+  return(
+	<div>kajgshdias</div>
+	)
 }
 
 export default App;
