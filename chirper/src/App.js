@@ -1,6 +1,12 @@
+import * as React from "react"
+import Login from "./components/login"
+
+
 function App() {
-  return(
-	<div>kajgshdias</div>
+	return (
+		<div>
+			<Login />
+		</div>
 	)
 }
 
