@@ -1,8 +1,8 @@
 import {Button, ChakraProvider, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
-import {useToast} from "@chakra-ui/react"
 import React, {useState} from 'react';
 import "../App.css"
 import chirper3 from '../images/chirper3.png';
+import {useHistory} from "react-router-dom";
 
 const axios = require('axios');
 const Login = () => {
@@ -11,15 +11,15 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
+    const history = useHistory();
+
+    const HandleChangeRoute = () => {
+        history.push('/');
+    };
 
 
-    /////////////////////
-    const toast = useToast()
-    /////////////////////
-
-
-    const Validate = () => {
-
+    const Validate = (event) => {
+        event.preventDefault();
         axios({
             method: 'post',
             url: 'http://localhost:3001/api/user/auth',
@@ -28,12 +28,11 @@ const Login = () => {
                 password: password
             }
         }).then((response) => {
-            localStorage.setItem('token2', response.data.result);
-            console.log(response.data.result);
-            console.log('then');
+            console.log('tokeny ' + response.data.token)
+            localStorage.setItem('token', response.data.token);
+            HandleChangeRoute();
         }).catch((error) => {
             console.log(error);
-            console.log('catch');
         });
 
         if (email.trim() === '') {
@@ -43,30 +42,7 @@ const Login = () => {
             setPassword('Password is required!');
         }
 
-        return console.log({email});
     };
-
-    //////////////////
-    const Validate2 = () => {
-        if (email.trim() === '' || password.trim() === '') {
-            toast({
-                title: "Błąd",
-                description: "We sprawdź czy wszystko wpisałeś wariacie.",
-                status: "error",
-                duration: 3000,
-                isClosable: true,
-            })
-        } else {
-            toast({
-                title: "Gituwa.",
-                description: "Wszystkie dane zostały wpisane.",
-                status: "success",
-                duration: 3000,
-                isClosable: true,
-            })
-        }
-    }
-    //////////////
 
 
     const HandleChangeEmail = (event) => {
@@ -79,7 +55,7 @@ const Login = () => {
 
     return (
         <div className="loginBackground">
-            <img className="chirperLogo" src={chirper3}/>
+            <img className="chirperLogo" src={chirper3} alt="chirperLogo"/>
             <form onSubmit={Validate}>
                 <ChakraProvider>
                     <Input placeholder="email" size="lg" onChange={HandleChangeEmail}/>
@@ -100,7 +76,6 @@ const Login = () => {
                     <Button colorScheme="blue" type="submit">Button</Button>
                     <p>{email}</p>
                     <p>{password}</p>
-                    <Button h="1.75rem" size="sm" onClick={(Validate2)}>Sprawdź</Button>
                 </ChakraProvider>
             </form>
         </div>
