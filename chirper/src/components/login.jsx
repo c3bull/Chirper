@@ -1,7 +1,7 @@
 import {Button, ChakraProvider, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
 import React, {useState} from 'react';
 import "../App.css"
-import chirper3 from '../images/chirper3.png';
+import chirper8 from '../images/chirper8.png';
 import {useHistory} from "react-router-dom";
 
 const axios = require('axios');
@@ -15,6 +15,10 @@ const Login = () => {
 
     const HandleChangeRoute = () => {
         history.push('/');
+    };
+
+    const SignInButton = () => {
+        history.push('/signIn');
     };
 
 
@@ -32,6 +36,10 @@ const Login = () => {
             localStorage.setItem('token', response.data.token);
             HandleChangeRoute();
         }).catch((error) => {
+            document.getElementById('loginBackground').style.backgroundColor = '#A51010';
+            setTimeout(function () {
+                document.getElementById('loginBackground').style.backgroundColor = '#0356A8';
+            }, 400);
             console.log(error);
         });
 
@@ -54,8 +62,8 @@ const Login = () => {
     };
 
     return (
-        <div className="loginBackground">
-            <img className="chirperLogo" src={chirper3} alt="chirperLogo"/>
+        <div id="loginBackground">
+            <img className="chirperLogo" src={chirper8} alt="chirperLogo"/>
             <form onSubmit={Validate}>
                 <ChakraProvider>
                     <Input placeholder="email" size="lg" onChange={HandleChangeEmail}/>
@@ -73,7 +81,8 @@ const Login = () => {
                         </InputRightElement>
                     </InputGroup>
                     <br/>
-                    <Button colorScheme="blue" type="submit">Button</Button>
+                    <Button colorScheme="blue" type="submit">Log in</Button>
+                    <Button colorScheme="blue" onClick={SignInButton}>Sign in</Button>
                     <p>{email}</p>
                     <p>{password}</p>
                 </ChakraProvider>

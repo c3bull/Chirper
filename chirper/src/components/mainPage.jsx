@@ -1,11 +1,12 @@
 import React from 'react';
-import chirper3 from '../images/chirper3.png';
+import chirper12 from '../images/chirper12.png';
+import {Redirect} from "react-router-dom";
 
 const MainPage = () => {
 
     return (
-        <div className="loginBackground">
-            <img className="chirperLogo" src={chirper3} alt="chirperLogo"/>
+        <div id="mainPageDiv" className="mainPageBackground">
+            <img src={chirper12} alt="chirperLogo"/>
         </div>
     )
 };

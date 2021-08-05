@@ -1,10 +1,97 @@
-.loginBackground{
-    background-color: aqua;
-    width: 50%;
-    height: 700px;
+#loginBackground{
+    background-color: #0356A8;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .chirperLogo{
-    width: 15%;
-    height: 15%;
+    width: 25vh;
+    height: 25vh;
+}
+
+.mainPageBackground{
+    background-color: #0356A8;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+#signInBackground{
+    background-color: #FFFFFF;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#monthOptions{
+    width: 33%;
+    float: left;
+}
+
+#dayOptions{
+    width: 33%;
+    float: left;
+}
+
+#yearOptions{
+    width: 34%;
+    float: left;
+}
+
+#formSign{
+    margin: 11px;
+}
+
+#formInput{
+    margin-top: 3px;
+}
+
+.formInput{
+    margin-top: 3px;
+}
+
+#navbarDiv{
+    background-color: #0356A8;
+    width: 29%;
+    float: left;
+    height: 100vh;
+}
+
+#mainPageDiv{
+    width: 40%;
+    float: left;
+    border: 1px solid grey;
+}
+
+#chatDiv{
+    background-color: #0356A8;
+    width: 30%;
+    height: 100vh;
+    float: left;
+    border: 1px solid grey;
+}
+
+#navbarDiv button {
+    font-size: 50px;
+    background-color: #0356A8;
+    border: 1px solid grey; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+}
+
+#navbarDiv button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+#navbarDiv button:hover {
+    background-color: #044280;
 }
