@@ -23,10 +23,6 @@ const Navbar = () => {
         history.push('/profile');
     };
 
-
-
-
-
     return (
         <div id="navbarDiv">
                 <Button onClick={NavbarHome}>Home</Button>

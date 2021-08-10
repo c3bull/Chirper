@@ -19,7 +19,7 @@ const SignIn = () => {
     };
 
     const Check = () => {
-        if(document.getElementById('password1').value === document.getElementById('password2').value){
+        if((document.getElementById('password1').value === document.getElementById('password2').value) && (document.getElementById('password1').value !== '')){
             console.log('password1')
             history.push('/login')
         }else{
