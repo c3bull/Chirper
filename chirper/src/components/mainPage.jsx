@@ -37,9 +37,9 @@ const MainPage = () => {
         <div id="mainPageDiv">
 
             {/*<div><p>{posts === null ? 'loading' : posts}</p></div>*/}
-            <div>
-                {posts.map(posts => <div>{posts}</div>)}
-            </div>
+            {/*<div>*/}
+            {/*    {posts.map(posts => <div>{posts}</div>)}*/}
+            {/*</div>*/}
             {/*<div>*/}
             {/*    <p>Hello</p>*/}
             {/*    <p>{posts2}</p>*/}
