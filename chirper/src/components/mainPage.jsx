@@ -3,13 +3,22 @@ import chirper12 from '../images/chirper12.png';
 import {Redirect} from "react-router-dom";
 import axios from "axios";
 import {Badge, Box, ChakraProvider, Image} from "@chakra-ui/react";
+import SinglePost from "./singlePost"
 
 const MainPage = () => {
 
 
     const [count, setCount] = useState(0);
-    const [posts, setPosts] = useState(null);
-    let posts2;
+    const [posts, setPosts] = useState([]);
+
+    const addPost = (data) => {
+        setPosts([...posts, {
+            author: data.author,
+            content: data.content,
+            likes: data.likes,
+        }])
+        console.log("---addPost-- data.author" + data.author)
+    }
 
 
     useEffect(() => {
@@ -22,11 +31,11 @@ const MainPage = () => {
                 author: '1234@test.pl'
             }
         }).then((response) => {
-
-            console.log('response. data ' + JSON.stringify(response.data))
-
-            setPosts(response.data);
-            console.log('posts2  ' + JSON.stringify(posts))
+            addPost(response.data);
+            console.log("posts: " + JSON.stringify(posts))
+            //console.log('response. data ' + JSON.stringify(response.data))
+            //setPosts(response.data);
+            //console.log('posts2  ' + JSON.stringify(posts))
         }).catch((error) => {
             console.log(error);
         });
@@ -35,6 +44,16 @@ const MainPage = () => {
 
     return (
         <div id="mainPageDiv">
+
+            {posts.map((item) =>
+                (
+                    <SinglePost
+                        author = {item.author}
+                        content = {item.content}
+                        likes = {item.likes}
+                    />
+                ))}
+
 
             {/*<div><p>{posts === null ? 'loading' : posts}</p></div>*/}
             {/*<div>*/}

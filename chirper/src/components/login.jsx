@@ -35,6 +35,8 @@ const Login = () => {
             console.log('tokeny ' + response.data.token)
             localStorage.setItem('token', response.data.token);
             HandleChangeRoute();
+
+
         }).catch((error) => {
             document.getElementById('loginBackground').style.backgroundColor = '#A51010';
             setTimeout(function () {

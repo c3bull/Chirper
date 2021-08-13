@@ -24,36 +24,36 @@ function App() {
         </div>
 
 
-    // <Router>
-    //     <div className="mainBackground">
-    //         {/*<div>*/}
-    //         {/*    <Route path="/" exact component={Navbar}/>*/}
-    //         {/*    <Route path="/" exact component={MainPage}/>*/}
-    //         {/*    <Route path="/" exact component={Chat}/>*/}
-    //         {/*    <Route path="/profile" exact component={Navbar}/>*/}
-    //         {/*    <Route path="/profile" exact component={Chat}/>*/}
-    //         {/*</div>*/}
-    //
-    //         <Switch>
-    //             <Route path="/">
-    //                 <Navbar/>
-    //                 <MainPage/>
-    //                 <Chat/>
-    //             </Route>
-    //
-    //             <Route path="/profile">
-    //                 <Navbar/>
-    //                 <Chat/>
-    //             </Route>
-    //
-    //             <Route path="/login">
-    //                 <Login/>
-    //                 <SignIn/>
-    //             </Route>
-    //         </Switch>
-    //
-    //     </div>
-    // </Router>
+        // <Router>
+        //     <div className="mainBackground">
+        //         {/*<div>*/}
+        //         {/*    <Route path="/" exact component={Navbar}/>*/}
+        //         {/*    <Route path="/" exact component={MainPage}/>*/}
+        //         {/*    <Route path="/" exact component={Chat}/>*/}
+        //         {/*    <Route path="/profile" exact component={Navbar}/>*/}
+        //         {/*    <Route path="/profile" exact component={Chat}/>*/}
+        //         {/*</div>*/}
+        //
+        //         <Switch>
+        //             <Route path="/">
+        //                 <Navbar/>
+        //                 <MainPage/>
+        //                 <Chat/>
+        //             </Route>
+        //
+        //             <Route path="/profile">
+        //                 <Navbar/>
+        //                 <Chat/>
+        //             </Route>
+        //
+        //             <Route path="/login">
+        //                 <Login/>
+        //                 <SignIn/>
+        //             </Route>
+        //         </Switch>
+        //
+        //     </div>
+        // </Router>
     )
 }
 
