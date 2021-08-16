@@ -3,7 +3,7 @@ import Login from "./components/login"
 import MainPage from "./components/mainPage";
 import SignIn from "./components/signIn";
 import Navbar from "./components/navbar";
-import {Route, Router, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import Chat from "./components/chat";
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
                 <Route path="/" exact component={MainPage}/>
                 <Route path="/" exact component={Chat}/>
                 <Route path="/profile" exact component={Navbar}/>
+                <Route path="/profile" exact component={MainPage}/>
                 <Route path="/profile" exact component={Chat}/>
             </div>
 
@@ -22,38 +23,6 @@ function App() {
                 <Route path="/signIn" exact component={SignIn}/>
             </Switch>
         </div>
-
-
-        // <Router>
-        //     <div className="mainBackground">
-        //         {/*<div>*/}
-        //         {/*    <Route path="/" exact component={Navbar}/>*/}
-        //         {/*    <Route path="/" exact component={MainPage}/>*/}
-        //         {/*    <Route path="/" exact component={Chat}/>*/}
-        //         {/*    <Route path="/profile" exact component={Navbar}/>*/}
-        //         {/*    <Route path="/profile" exact component={Chat}/>*/}
-        //         {/*</div>*/}
-        //
-        //         <Switch>
-        //             <Route path="/">
-        //                 <Navbar/>
-        //                 <MainPage/>
-        //                 <Chat/>
-        //             </Route>
-        //
-        //             <Route path="/profile">
-        //                 <Navbar/>
-        //                 <Chat/>
-        //             </Route>
-        //
-        //             <Route path="/login">
-        //                 <Login/>
-        //                 <SignIn/>
-        //             </Route>
-        //         </Switch>
-        //
-        //     </div>
-        // </Router>
     )
 }
 

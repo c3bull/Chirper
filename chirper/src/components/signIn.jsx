@@ -2,58 +2,41 @@ import React, {useState} from 'react';
 import chirperbezotoczki from '../images/chirperbezotoczki2.png';
 import {Button, ChakraProvider, Input, InputGroup, InputRightElement, Select} from "@chakra-ui/react";
 import {useHistory} from "react-router-dom";
-import axios from "axios";
 
 const SignIn = () => {
 
-    const [role, setRole] = useState('user')
     const [password, setPassword] = useState('')
-    const [active, setActive] = useState(true)
-    const [isAdmin, setAdmin] = useState(false)
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
-    const history = useHistory();
 
-    const HandleChangeEmail = (event) => {
-        setEmail(event.currentTarget.value);
-    };
-    const HandleChangePass = (event) => {
-        setPassword(event.currentTarget.value);
-    };
-
-    const HandleChangeRoute = () => {
-        history.push('/');
-        window.location.reload();
-    };
 
     const HandleSubmit = (event) => {
-        event.preventDefault();
-        if (Check()) {
-
-            axios({
-                method: 'post',
-                url: 'http://localhost:3001/api/user/create',
-                data: {
-                email: email,
-                name: name,
-                password: password,
-                role: role,
-                active: active,
-                isAdmin: isAdmin
-            }
-
-        }).
-            then((response) => {
-                HandleChangeRoute();
-
-                // history.push('/login')
-            }).catch((error) => {
-                console.log(error);
-            });
-        }
-        ;
+        // event.preventDefault();
+        // if (Check()) {
+        //
+        //     axios({
+        //         method: 'post',
+        //         url: 'http://localhost:3001/api/user/create',
+        //         data: {
+        //         email: email,
+        //         name: name,
+        //         password: password,
+        //         role: role,
+        //         active: active,
+        //         isAdmin: isAdmin
+        //     }
+        //
+        // }).
+        //     then((response) => {
+        //         HandleChangeRoute();
+        //
+        //         // history.push('/login')
+        //     }).catch((error) => {
+        //         console.log(error);
+        //     });
+        // };
 
 
     };
