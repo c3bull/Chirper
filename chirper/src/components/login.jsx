@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import "../App.css"
 import chirper8 from '../images/chirper8.png';
 import {useHistory} from "react-router-dom";
+import {connect} from "react-redux";
 
 const axios = require('axios');
 
@@ -103,10 +104,14 @@ const Login = (props) => {
                     <p>{email}</p>
                     <p>{password}</p>
                 </ChakraProvider>
+
             </form>
+
         </div>
     )
 };
 
-
-export default Login;
+const mapStateToProps = state =>({
+    userNickname: state.userNickname
+});
+export default connect(mapStateToProps)(Login);

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Login from "./login";
 import nicknameCheck from "./login"
+import {connect} from "react-redux";
 class App extends React.Component {
 
     state = {
@@ -35,11 +36,13 @@ class App extends React.Component {
 
 
     submit = (event) => {
+        this.props.dispatch({type:"GET_USER_NICKNAME"})
         event.preventDefault();
-            console.log('login nickanme ' + nicknameCheck)
+        console.log('login nickname ' + this.props.userNickname)
         const payload = {
             // author: this.state.author,
-            author: nicknameCheck,
+            //author: nicknameCheck,
+            author: this.props.userNickname,
             content: this.state.content,
             likes: this.state.likes
         };
@@ -138,8 +141,11 @@ class App extends React.Component {
     }
 }
 
+const mapStateToProps = state =>({
+    userNickname: state.userNickname
+});
+export default connect(mapStateToProps)(App);
 
-export default App;
 
 
 // import React, {Component, useEffect, useState} from "react";
