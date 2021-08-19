@@ -1,5 +1,12 @@
-html,body
-{
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+*, *::after, *::before {
+    box-sizing: border-box;
+
+}
+
+html, body {
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -7,116 +14,316 @@ html,body
     overflow-x: hidden;
 }
 
-#loginBackground{
-    background-color: #0356A8;
+body {
+    background-color: #255471;
+}
+
+#loginBackground {
+    background-color: #255471;
     height: 100vh;
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
-.chirperLogo{
+.chirperLogo {
     width: 25vh;
     height: 25vh;
 }
 
-.mainPageBackground{
-    background-color: #0356A8;
-    height: 100vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-
-}
-
-#signInBackground{
-    background-color: #FFFFFF;
+.mainPageBackground {
     height: 100vh;
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
-#monthOptions{
+#signInBackground {
+    background-color: #255471;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#monthOptions {
     width: 33%;
     float: left;
 }
 
-#dayOptions{
+#dayOptions {
     width: 33%;
     float: left;
 }
 
-#yearOptions{
+#yearOptions {
     width: 34%;
     float: left;
 }
 
-#formSign{
+#formSign {
     margin: 11px;
 }
 
-#formInput{
+#formInput {
     margin-top: 3px;
 }
 
-.formInput{
+.formInput {
     margin-top: 3px;
 }
 
-#navbarDiv{
-    background-color: #0356A8;
-    width: 29%;
+#navbarDiv {
+    width: 30%;
     float: left;
     height: 100vh;
+    display: flex;
+    /*display: block;*/
+    flex-direction: column;
+    text-align: center;
+    padding-top: 50px;
+    margin: auto;
+    align-content: center;
+    /*justify-content: center;*/
 }
 
-#mainPageDiv{
+#mainPageDiv {
     width: 40%;
     float: left;
-    border: 1px solid grey;
     overflow-y: scroll;
-    height: 100vh
+    height: 100vh;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    justify-items: center;
+
 }
 
 ::-webkit-scrollbar {
     display: none;
 }
 
-#chatDiv{
-    background-color: #0356A8;
+#chatDiv {
     width: 30%;
     height: 100vh;
     float: left;
-    border: 1px solid grey;
 }
 
-#navbarDiv button {
-    font-size: 50px;
-    width: 100%;
+
+.blog-post__display {
+    border-top: 1px solid grey;
+    color: white;
+    padding: 20px;
+}
+
+.chirpBody {
+    width: 90%;
+    height: 200px;
+    resize: none;
+    margin-left: 5%;
+    justify-content: center;
+    display: flex block;
+    border-radius: 1em;
+    position: relative;
+    font-size: 1.25rem;
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.chirpAuthor {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    width: 90%;
+    resize: none;
+    margin-left: 5%;
+    justify-content: center;
+    display: flex block;
+    border-radius: 1em;
+    position: relative;
+    font-size: 1rem;
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+
+
+.shrink-border {
+    cursor: pointer;
+    margin-top: 5px;
     display: block;
-    background:linear-gradient(to bottom, #0356A8 5%, #0560B9 100%);
-    /*background-color:#446db3;*/
-    border-top: 10px;
-    border-color: black;
-    color:#ffffff;
-    padding:12px 37px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #000000;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.15rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /*width: 50%;*/
+}
+.shrink-border:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #255471;
+    border-radius: 10rem;
+    z-index: -2;
+}
+.shrink-border:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #008fb3;
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: -1;
+}
+.shrink-border:hover {
+    color: #fff;
+}
+.shrink-border:hover:before {
+    width: 100%;
 }
 
-#navbarDiv button:not(:last-child) {
-    border-bottom: none;
+/** {*/
+/*    font-family: Arial;*/
+/*    text-decoration: none;*/
+/*    font-size: 20px;*/
+/*}*/
+
+
+.draw-border {
+    display: inline-block;
+    text-align: center;
+    /*background: var(--color);*/
+    /*color: var(--bg);*/
+    font-weight: bold;
+    padding: 1.18em 1.32em 1.03em;
+    line-height: 1;
+    border-radius: 1em;
+    position: relative;
+    min-width: 8.23em;
+    text-decoration: none;
+    /*font-family: var(--font);*/
+    font-size: 1.25rem;
 }
 
-#navbarDiv button:hover {
-    /*background-color: #044280;*/
-    background:linear-gradient(to bottom, #0560B9 5%, #0356A8 100%);
-    background-color:#187bf5;
+.draw-border:before,
+.draw-border:after {
+    width: 4.4em;
+    height: 2.95em;
+    position: absolute;
+    content: "";
+    display: inline-block;
+    /*background: var(--color);*/
+    border-radius: 50%;
+    transition: transform 1s ease;
+    transform: scale(0);
+    z-index: -1;
 }
 
-#navbarDiv button:active {
-    position:relative;
-    top:1px;
+.draw-border:before {
+    top: -25%;
+    left: 20%;
+}
+
+.draw-border:after {
+    bottom: -25%;
+    right: 20%;
+}
+
+.draw-border:hover:before,
+.draw-border:hover:after {
+    transform: none;
+}
+
+
+.wrapper {
+    padding: 1rem 0;
+    filter: url('#goo');
+    justify-content: center;
+    display: flex;
+}
+
+.navbarButtons {
+    justify-content: center;
+    display: flex block;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    /*padding: 1.18em 1.32em 1.03em;*/
+    padding-left: 30%;
+    padding-right: 30%;
+    line-height: 1;
+    border-radius: 1em;
+    position: relative;
+    min-width: 8.23em;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+
+.addChirp {
+    outline: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    background-color: #008fb3;
+    color: white;
+    font-weight: bold;
+    padding: 1.18em 1.32em 1.03em;
+    line-height: 1;
+    border-radius: 1em;
+    position: relative;
+    min-width: 8.23em;
+    text-decoration: none;
+    font-size: 1.25rem;
+
+}
+
+.addChirp:before,
+.addChirp:after {
+    width: 4.4em;
+    height: 2.95em;
+    position: absolute;
+    content: "";
+    display: inline-block;
+    background-color: #008fb3;
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+    transform: scale(0);
+    z-index: -1;
+}
+
+.addChirp:before {
+    top: -25%;
+    left: 20%;
+}
+
+.addChirp:after {
+    bottom: -25%;
+    right: 20%;
+}
+
+.addChirp:hover:before,
+.addChirp:hover:after {
+    transform: none;
 }
 

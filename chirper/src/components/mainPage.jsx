@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-
+import Login from "./login";
+import nicknameCheck from "./login"
 class App extends React.Component {
 
     state = {
@@ -35,9 +36,10 @@ class App extends React.Component {
 
     submit = (event) => {
         event.preventDefault();
-
+            console.log('login nickanme ' + nicknameCheck)
         const payload = {
-            author: this.state.author,
+            // author: this.state.author,
+            author: nicknameCheck,
             content: this.state.content,
             likes: this.state.likes
         };
@@ -72,7 +74,7 @@ class App extends React.Component {
         if (!posts.length) return null;
 
 
-        return posts.map((post, index) => (
+        return posts.slice(0).reverse().map((post, index) => (
             <div key={index} className="blog-post__display">
                 <h3>{post.author}</h3>
                 <p>{post.content}</p>
@@ -86,32 +88,46 @@ class App extends React.Component {
     render() {
 
         return (
-            <div id="mainPageDiv">
 
+            <div id="mainPageDiv">
                 <form onSubmit={this.submit}>
+
+                    {/*<div className="form-input">*/}
+                    {/*    <input className="chirpAuthor"*/}
+                    {/*           type="text"*/}
+                    {/*           name="author"*/}
+                    {/*           placeholder="Author"*/}
+                    {/*           value={this.state.author}*/}
+                    {/*           onChange={this.handleChange}*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+
                     <div className="form-input">
-                        <input
-                            type="text"
-                            name="author"
-                            placeholder="Title"
-                            value={this.state.author}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="form-input">
-            <textarea
-                placeholder="body"
-                name="content"
-                cols="30"
-                rows="10"
-                value={this.state.content}
-                onChange={this.handleChange}
+            <textarea className="chirpBody"
+                      placeholder="Say something"
+                      name="content"
+                      value={this.state.content}
+                      onChange={this.handleChange}
             >
 
             </textarea>
                     </div>
 
-                    <button>Submit</button>
+                    <div className="wrapper">
+                        <button className="addChirp">Add chirp!</button>
+                    </div>
+
+                    <svg style={{visibility: "hidden", position: "absolute", width: "0", height: "0"}}
+                         xmlns="http://www.w3.org/2000/svg" version="1.1">
+                        <defs>
+                            <filter id="goo">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                                <feColorMatrix in="blur" mode="matrix"
+                                               values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo"/>
+                                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+                            </filter>
+                        </defs>
+                    </svg>
                 </form>
 
                 <div className="blog-">

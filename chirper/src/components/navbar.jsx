@@ -24,14 +24,15 @@ const Navbar = () => {
 
     return (
         <div id="navbarDiv">
-                <Button onClick={NavbarHome}>Home</Button>
+            <div className="navbarButtons">
+                <div className="shrink-border" onClick={NavbarHome}>Home</div>
 
-                <Button onClick={NavbarLogIn}>Login</Button>
+                <div className="shrink-border" onClick={NavbarLogIn}>Login</div>
 
-                <Button onClick={NavbarSignIn}>Sign In</Button>
+                <div className="shrink-border" onClick={NavbarSignIn}>Sign In</div>
 
-                <Button onClick={NavbarProfile}>Profile</Button>
-
+                <div className="shrink-border" onClick={NavbarProfile}>Profile</div>
+            </div>
         </div>
     );
 };

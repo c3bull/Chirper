@@ -5,13 +5,19 @@ import chirper8 from '../images/chirper8.png';
 import {useHistory} from "react-router-dom";
 
 const axios = require('axios');
-const Login = () => {
+
+
+const Login = (props) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [show, setShow] = useState(false)
+
+    const [nickname, setNickname] = useState('')
+
     const handleClick = () => setShow(!show)
     const history = useHistory();
+    let nicknameCheck = '';
 
     const HandleChangeRoute = () => {
         history.push('/');
@@ -21,6 +27,9 @@ const Login = () => {
         history.push('/signIn');
     };
 
+    const GetNickname = () => {
+        return nicknameCheck;
+    };
 
     const Validate = (event) => {
         event.preventDefault();
@@ -32,15 +41,21 @@ const Login = () => {
                 password: password
             }
         }).then((response) => {
-            console.log('tokeny ' + response.data.token)
-            localStorage.setItem('token', response.data.token);
+            nicknameCheck = response.data.user.nickname;
+            setNickname(response.data.user.nickname);
+            console.log('nickname ' + nicknameCheck)
+            console.log('nickname  data ' + response.data.user.nickname)
+            console.log('token user ' + JSON.stringify(response.data.user));
+            console.log('tokeny ' + JSON.stringify(response.data.token));
+            // tokenCheck = response.data.token;
+            localStorage.setItem('token', response.data.token.token);
             HandleChangeRoute();
 
 
         }).catch((error) => {
             document.getElementById('loginBackground').style.backgroundColor = '#A51010';
             setTimeout(function () {
-                document.getElementById('loginBackground').style.backgroundColor = '#0356A8';
+                document.getElementById('loginBackground').style.backgroundColor = '#255471';
             }, 400);
             console.log(error);
         });
