@@ -14,13 +14,18 @@ const Navbar = () => {
         history.push('/login');
     };
 
-    const NavbarSignIn = () => {
-        history.push('/signIn');
+    const NavbarSignUp = () => {
+        history.push('/signUp');
     };
 
     const NavbarProfile = () => {
         history.push('/profile');
     };
+
+    const NavbarLogout = () => {
+        localStorage.removeItem('token');
+        history.push('/login');
+    }
 
     return (
         <div id="navbarDiv">
@@ -29,9 +34,11 @@ const Navbar = () => {
 
                 <div className="shrink-border" onClick={NavbarLogIn}>Login</div>
 
-                <div className="shrink-border" onClick={NavbarSignIn}>Sign In</div>
+                <div className="shrink-border" onClick={NavbarSignUp}>Sign Up</div>
 
                 <div className="shrink-border" onClick={NavbarProfile}>Profile</div>
+
+                <div className="shrink-border" onClick={NavbarLogout}>Log Out</div>
             </div>
         </div>
     );

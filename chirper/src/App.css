@@ -103,7 +103,7 @@ body {
 }
 
 #chatDiv {
-    width: 30%;
+    width: 20%;
     height: 100vh;
     float: left;
 }
@@ -133,6 +133,26 @@ body {
     -moz-box-shadow: none;
     box-shadow: none;
 }
+
+.chatDivBody {
+    /*width: 10%;*/
+    height: 200px;
+    resize: none;
+    margin-left: 5%;
+    justify-content: center;
+    display: flex block;
+    border-radius: 1em;
+    position: relative;
+    font-size: 1.25rem;
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 
 .chirpAuthor {
     margin-bottom: 5px;
@@ -326,4 +346,3 @@ body {
 .addChirp:hover:after {
     transform: none;
 }
-

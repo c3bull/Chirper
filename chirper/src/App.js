@@ -1,7 +1,7 @@
 import * as React from "react"
 import Login from "./components/login"
 import MainPage from "./components/mainPage";
-import SignIn from "./components/signIn";
+import SignUp from "./components/signUp";
 import Navbar from "./components/navbar";
 import {Switch} from "react-router-dom";
 import Chat from "./components/chat";
@@ -54,7 +54,7 @@ function App() {
 
             <Switch>
                 <Route path="/login" exact component={Login}/>
-                <Route path="/signIn" exact component={SignIn}/>
+                <Route path="/signUp" exact component={SignUp}/>
             </Switch>
         </div>
     )

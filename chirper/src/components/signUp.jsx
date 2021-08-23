@@ -4,7 +4,7 @@ import {Button, ChakraProvider, Input, InputGroup, InputRightElement, Select} fr
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
-const SignIn = () => {
+const SignUp = () => {
 
     const [nickname, setNickname] = useState('')
     const [email, setEmail] = useState('')
@@ -200,4 +200,4 @@ const SignIn = () => {
     )
 };
 
-export default SignIn;
+export default SignUp;

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Login from "./login";
-import nicknameCheck from "./login"
+import {connect} from "react-redux";
+
 class App extends React.Component {
 
     state = {
@@ -36,10 +36,9 @@ class App extends React.Component {
 
     submit = (event) => {
         event.preventDefault();
-            console.log('login nickanme ' + nicknameCheck)
+        console.log('login nickname ' + this.props.userNickname)
         const payload = {
-            // author: this.state.author,
-            author: nicknameCheck,
+            author: this.props.userNickname,
             content: this.state.content,
             likes: this.state.likes
         };
@@ -89,18 +88,9 @@ class App extends React.Component {
 
         return (
 
-            <div id="mainPageDiv">
-                <form onSubmit={this.submit}>
 
-                    {/*<div className="form-input">*/}
-                    {/*    <input className="chirpAuthor"*/}
-                    {/*           type="text"*/}
-                    {/*           name="author"*/}
-                    {/*           placeholder="Author"*/}
-                    {/*           value={this.state.author}*/}
-                    {/*           onChange={this.handleChange}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
+            <div id="mainPageDiv">
+                <form>
 
                     <div className="form-input">
             <textarea className="chirpBody"
@@ -114,7 +104,7 @@ class App extends React.Component {
                     </div>
 
                     <div className="wrapper">
-                        <button className="addChirp">Add chirp!</button>
+                        <button className="addChirp" onClick={this.submit}>Add chirp!</button>
                     </div>
 
                     <svg style={{visibility: "hidden", position: "absolute", width: "0", height: "0"}}
@@ -134,12 +124,16 @@ class App extends React.Component {
                     {this.displayBlogPost(this.state.posts)}
                 </div>
             </div>
-        );
+        )
+            ;
     }
 }
 
+const mapStateToProps = state => ({
+    userNickname: state.userNickname
+});
 
-export default App;
+export default connect(mapStateToProps)(App);
 
 
 // import React, {Component, useEffect, useState} from "react";

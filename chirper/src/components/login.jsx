@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import "../App.css"
 import chirper8 from '../images/chirper8.png';
 import {useHistory} from "react-router-dom";
+import {connect} from "react-redux";
 
 const axios = require('axios');
-
 
 const Login = (props) => {
 
@@ -13,23 +13,18 @@ const Login = (props) => {
     const [password, setPassword] = useState('')
     const [show, setShow] = useState(false)
 
-    const [nickname, setNickname] = useState('')
 
     const handleClick = () => setShow(!show)
     const history = useHistory();
-    let nicknameCheck = '';
 
     const HandleChangeRoute = () => {
         history.push('/');
     };
 
-    const SignInButton = () => {
-        history.push('/signIn');
+    const SignUpButton = () => {
+        history.push('/signUp');
     };
 
-    const GetNickname = () => {
-        return nicknameCheck;
-    };
 
     const Validate = (event) => {
         event.preventDefault();
@@ -41,13 +36,8 @@ const Login = (props) => {
                 password: password
             }
         }).then((response) => {
-            nicknameCheck = response.data.user.nickname;
-            setNickname(response.data.user.nickname);
-            console.log('nickname ' + nicknameCheck)
-            console.log('nickname  data ' + response.data.user.nickname)
-            console.log('token user ' + JSON.stringify(response.data.user));
-            console.log('tokeny ' + JSON.stringify(response.data.token));
-            // tokenCheck = response.data.token;
+             props.dispatch({type: "SAVE_USER_NICKNAME", payload: response.data.user.nickname})
+
             localStorage.setItem('token', response.data.token.token);
             HandleChangeRoute();
 
@@ -99,7 +89,7 @@ const Login = (props) => {
                     </InputGroup>
                     <br/>
                     <Button colorScheme="blue" type="submit">Log in</Button>
-                    <Button colorScheme="blue" onClick={SignInButton}>Sign in</Button>
+                    <Button colorScheme="blue" onClick={SignUpButton}>Sign up</Button>
                     <p>{email}</p>
                     <p>{password}</p>
                 </ChakraProvider>
@@ -109,4 +99,7 @@ const Login = (props) => {
 };
 
 
-export default Login;
+const mapStateToProps = state => ({
+    userNickname: state.userNickname
+});
+export default connect(mapStateToProps)(Login);
