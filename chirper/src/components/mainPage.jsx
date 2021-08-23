@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
+import SinglePost from "./singlePost";
 
 class App extends React.Component {
 
@@ -74,13 +75,18 @@ class App extends React.Component {
 
 
         return posts.slice(0).reverse().map((post, index) => (
-            <div key={index} className="blog-post__display">
+            <SinglePost
+                author={post.author}
+                content={post.content}
+                likes={post.likes}
+            />
+            /*<div key={index} className="blog-post__display">
                 <h3>{post.author}</h3>
                 <p>{post.content}</p>
                 <p>{post.date}</p>
                 <p>{post.time}</p>
                 <p>{post.likes}</p>
-            </div>
+            </div>*/
         ));
     };
 

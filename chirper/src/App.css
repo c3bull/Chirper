@@ -115,6 +115,105 @@ body {
     padding: 20px;
 }
 
+
+.blog_post_engagement{
+    /*background-color: chartreuse;*/
+    margin-left: 15px;
+    margin-right: 20px;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 16px;
+    color: #8798a4;
+    margin-bottom: 15px;
+}
+.blog_post_heart{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 3px;
+    margin-right: 2px;
+}
+
+.blog-post__display_new {
+    border-top: 1px solid grey;
+    color: white;
+    background-color: #15202b;
+    overflow: hidden;
+    font-family: system-ui;
+    clear: both;
+
+}
+.blog_post_author{
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffffff;
+    /*background-color: red;*/
+    display:inline-block;
+
+}
+.blog_post_header{
+    margin-left: 15px;
+    margin-top: 5px;
+
+}
+.blog_post_avatar{
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+
+}
+
+.blog_post_avatar_div{
+    /*background-color: darkorange;*/
+    margin-left: 20px;
+    margin-top: 17px;
+    float: left;
+
+}
+.blog_post_full{
+    /*background-color: lightblue;*/
+    float: left;
+    margin-top: 10px;
+    min-width: 350px;
+}
+
+.blog_post_content{
+    /*background-color: burlywood;*/
+    margin-left: 15px;
+    margin-right: 20px;
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffffff;
+    min-height: 20px;
+    min-width: 200px;
+    max-width: 350px;
+}
+.blog_post_nickname{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8798a4;
+    /*background-color: blue;*/
+    display:inline-block;
+}
+.blog_post_postTime{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8798a4;
+    /*background-color: blue;*/
+    display:inline-block;
+}
+
+
+
+
+
+
+
 .chirpBody {
     width: 90%;
     height: 200px;
