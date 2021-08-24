@@ -91,19 +91,21 @@ class Chat extends React.Component {
                         {this.displayMessages(this.state.messages)}
                     </div>
                     <div className="form-input">
-            <textarea className="chatDivBody"
-                      placeholder="Say something"
+
+                        <div className="sendMessage">
+            <textarea className="messageArea"
+                      placeholder="Aa"
                       name="content"
                       value={this.state.content}
                       onChange={this.handleChange}
             >
-
             </textarea>
+                            <button className="sendMessageButton"></button>
+                            {/*<button className="sendMessageButton">sendMessage</button>*/}
+                        </div>
+
                     </div>
 
-                    <div className="wrapper">
-                        <button className="addChirp">Add chirp!</button>
-                    </div>
 
                     <svg style={{visibility: "hidden", position: "absolute", width: "0", height: "0"}}
                          xmlns="http://www.w3.org/2000/svg" version="1.1">

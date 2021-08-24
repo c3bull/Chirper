@@ -1,6 +1,44 @@
 import {background} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
-function SinglePost({author, content, likes}) {
+function SinglePost({id, author, content, likes}) {
+
+    const [liked, setLiked] = useState(false);
+    const [responseLikes, setResponseLikes] = useState(likes);
+
+    const payload = {
+        isLiked: liked,
+        postId: id
+    };
+
+    const liking = () => {
+        axios({
+            url: 'http://localhost:3001/api/feed/update',
+            method: 'POST',
+            data: payload
+        })
+            .then((response) => {
+                console.log('wchodzi do then resp')
+                setResponseLikes(response.data.likes)
+                console.log('res likes ' + response.data.likes)
+                console.log('Data has been sent to the server');
+            })
+            .catch(() => {
+                console.log('Internal server error');
+            });
+        console.log("like")
+
+        console.log('ajdi ' + id)
+        // useEffect();
+        if (liked) {
+            setLiked(false);
+        } else {
+            setLiked(true)
+        }
+
+    }
+
     return (
         <div className="blog-post__display_new">
 
@@ -22,13 +60,11 @@ function SinglePost({author, content, likes}) {
                 </div>
                 <div className="blog_post_engagement">
                     <div>
-                        <img className="blog_post_heart" src="https://emojigraph.org/media/google/white-heart_1f90d.png"/>
-                        {likes}
+                        <img onClick={liking} className="blog_post_heart"
+                             src="https://emojigraph.org/media/google/white-heart_1f90d.png"/>
+                        {responseLikes}, {liked.toString()}
                     </div>
-
-
                 </div>
-
             </div>
             {/*<strong>{author}</strong>
             <p>{content}</p>

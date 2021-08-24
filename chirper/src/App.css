@@ -12,6 +12,10 @@ html, body {
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 body {
@@ -102,18 +106,73 @@ body {
     display: none;
 }
 
-#chatDiv {
-    width: 20%;
-    height: 100vh;
+
+
+.blogMessage{
+    height: 84vh;
     float: left;
+    overflow-y: scroll;
+    width: 30%;
+    display: flex;
+    /*display: block;*/
+    flex-direction: column;
+    text-align: center;
+    padding-top: 50px;
+    margin: auto;
+    align-content: center;
+    /*justify-content: center;*/
+}
+
+.sendMessage{
+    margin-top: 1vh;
+    float: left;
+    width: 30%;
+    height: 15vh;
 }
 
 
-.blog-post__display {
-    border-top: 1px solid grey;
-    color: white;
-    padding: 20px;
+.sendMessageButton{
+    float: right;
+    margin-left: 0.5em;
+    height: 2.5em;
+    padding: 0em 0.5em 0em 2.4em;
+    font-size: 3em;
+    font-weight: bold;
+    font-family: "Open Sans";
+    text-transform: uppercase;
+    color: #008fb3;
+    background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em 0.07em transparent;
+    background-size: 54px 204px;
+    border-radius: 2em;
+    border: 0.15em solid #008fb3;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
+.sendMessageButton:hover {
+    color: #fff;
+    background-color: #008fb3;
+    border-color: #008fb3;
+    background-position: 0.75em bottom;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.sendMessageButton:focus {
+    background-position: 2em -4em;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+/* Webfonts */
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+
 
 
 .blog_post_engagement{
@@ -233,11 +292,12 @@ body {
     box-shadow: none;
 }
 
-.chatDivBody {
-    /*width: 10%;*/
-    height: 200px;
+.messageArea {
+    float: left;
+    width: 67%;
+    height: 13vh;
     resize: none;
-    margin-left: 5%;
+    margin-left: 2%;
     justify-content: center;
     display: flex block;
     border-radius: 1em;
@@ -250,6 +310,16 @@ body {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    background-color: white;
+}
+
+/*//*/
+
+.blog-post__display {
+    border-top: 1px solid grey;
+    color: white;
+    padding: 20px;
+
 }
 
 
@@ -272,8 +342,6 @@ body {
     -moz-box-shadow: none;
     box-shadow: none;
 }
-
-
 
 .shrink-border {
     cursor: pointer;
@@ -320,12 +388,6 @@ body {
 .shrink-border:hover:before {
     width: 100%;
 }
-
-/** {*/
-/*    font-family: Arial;*/
-/*    text-decoration: none;*/
-/*    font-size: 20px;*/
-/*}*/
 
 
 .draw-border {
@@ -380,6 +442,8 @@ body {
     justify-content: center;
     display: flex;
 }
+
+
 
 .navbarButtons {
     justify-content: center;

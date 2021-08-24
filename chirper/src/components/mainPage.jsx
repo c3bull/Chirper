@@ -16,6 +16,11 @@ class App extends React.Component {
         this.getBlogPost();
     };
 
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     this.getBlogPost();
+    // }
+
+
 
     getBlogPost = () => {
         axios.get('http://localhost:3001/api/feed/posts')
@@ -76,6 +81,7 @@ class App extends React.Component {
 
         return posts.slice(0).reverse().map((post, index) => (
             <SinglePost
+                id={post._id}
                 author={post.author}
                 content={post.content}
                 likes={post.likes}
