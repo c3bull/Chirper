@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import nicknameCheck from "./login"
 import {connect} from "react-redux";
+import SingleMessage from "./singleMessage";
 
 class Chat extends React.Component {
 
@@ -72,11 +73,17 @@ class Chat extends React.Component {
 
 
         return messages.map((message, index) => (
-            <div key={index} className="blog-post__display">
-                <h3>{message.author}</h3>
-                <p>{message.content}</p>
-                <p>{message.time}</p>
-            </div>
+
+            <SingleMessage
+                author={message.author}
+                content={message.content}
+                time={message.time}
+            />
+            // <div key={index} className="blog-post__display">
+            //     <h3>{message.author}</h3>
+            //     <p>{message.content}</p>
+            //     <p>{message.time}</p>
+            // </div>
         ));
     };
 

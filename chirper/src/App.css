@@ -6,6 +6,10 @@
 
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -19,20 +23,21 @@ html, body {
 }
 
 body {
-    background-color: #255471;
-}
-
-#loginBackground {
-    background-color: #255471;
-    height: 100vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    background-color: #15202b;
 }
 
 .chirperLogo {
     width: 25vh;
     height: 25vh;
+}
+
+#loginBackground {
+    background-color: #15202b;
+    color: white;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .mainPageBackground {
@@ -42,8 +47,8 @@ body {
     justify-content: center;
 }
 
-#signInBackground {
-    background-color: #255471;
+#signUpBackground {
+    background-color: #15202b;
     height: 100vh;
     align-items: center;
     display: flex;
@@ -102,13 +107,7 @@ body {
 
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
-
-
-.blogMessage{
+.blogMessage {
     height: 84vh;
     float: left;
     overflow-y: scroll;
@@ -117,13 +116,12 @@ body {
     /*display: block;*/
     flex-direction: column;
     text-align: center;
-    padding-top: 50px;
     margin: auto;
     align-content: center;
     /*justify-content: center;*/
 }
 
-.sendMessage{
+.sendMessage {
     margin-top: 1vh;
     float: left;
     width: 30%;
@@ -131,7 +129,7 @@ body {
 }
 
 
-.sendMessageButton{
+.sendMessageButton {
     float: right;
     margin-left: 0.5em;
     height: 2.5em;
@@ -140,30 +138,31 @@ body {
     font-weight: bold;
     font-family: "Open Sans";
     text-transform: uppercase;
-    color: #008fb3;
+    color: #1C436B;
     background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em 0.07em transparent;
     background-size: 54px 204px;
     border-radius: 2em;
-    border: 0.15em solid #008fb3;
+    border: 0.15em solid #1C436B;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
+
 .sendMessageButton:hover {
     color: #fff;
-    background-color: #008fb3;
+    background-color: #1C436B;
     border-color: #008fb3;
     background-position: 0.75em bottom;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+
 .sendMessageButton:focus {
     background-position: 2em -4em;
     -webkit-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-/* Webfonts */
 
 @font-face {
     font-family: 'Open Sans';
@@ -173,10 +172,7 @@ body {
 }
 
 
-
-
-.blog_post_engagement{
-    /*background-color: chartreuse;*/
+.blog_post_engagement {
     margin-left: 15px;
     margin-right: 20px;
     margin-top: 10px;
@@ -185,7 +181,8 @@ body {
     color: #8798a4;
     margin-bottom: 15px;
 }
-.blog_post_heart{
+
+.blog_post_heart {
     width: 18px;
     height: 18px;
     position: relative;
@@ -202,43 +199,43 @@ body {
     clear: both;
 
 }
-.blog_post_author{
+
+.blog_post_author {
     font-weight: 700;
     font-size: 15px;
     line-height: 20px;
     color: #ffffff;
     /*background-color: red;*/
-    display:inline-block;
+    display: inline-block;
 
 }
-.blog_post_header{
+
+.blog_post_header {
     margin-left: 15px;
     margin-top: 5px;
 
 }
-.blog_post_avatar{
+
+.blog_post_avatar {
     border-radius: 50%;
     width: 46px;
     height: 46px;
 
 }
 
-.blog_post_avatar_div{
-    /*background-color: darkorange;*/
+.blog_post_avatar_div {
     margin-left: 20px;
     margin-top: 17px;
     float: left;
-
 }
-.blog_post_full{
-    /*background-color: lightblue;*/
+
+.blog_post_full {
     float: left;
     margin-top: 10px;
     min-width: 350px;
 }
 
-.blog_post_content{
-    /*background-color: burlywood;*/
+.blog_post_content {
     margin-left: 15px;
     margin-right: 20px;
     margin-top: 10px;
@@ -250,30 +247,164 @@ body {
     min-width: 200px;
     max-width: 350px;
 }
-.blog_post_nickname{
+
+.blog_post_nickname {
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
     color: #8798a4;
-    /*background-color: blue;*/
-    display:inline-block;
+    display: inline-block;
 }
-.blog_post_postTime{
+
+.blog_post_postTime {
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
     color: #8798a4;
-    /*background-color: blue;*/
-    display:inline-block;
+    display: inline-block;
 }
 
 
+.singleMessageDiv {
+    color: white;
+    background-color: #15202b;
+    font-family: system-ui;
+    clear: both;
+}
+
+.singleMessageAvatar {
+    float: left;
+}
+
+.singleMessageAvatarImg {
+    background-color: aqua;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+}
+
+.singleMessageFull {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
 
 
+.singleMessageHeader {
+    background-color: lightblue;
+    margin-left: 15px;
+    margin-top: 5px;
+}
 
 
+.singleMessageAuthor {
+    margin-left: 9%;
+    float: left;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.singleMessageTime {
+    float: left;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8798a4;
+    display: inline-block;
+}
+
+.singleMessageContent {
+    margin-left: 1%;
+    text-align: left;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 1em;
+    width: auto;
+    max-width: 80%;
+    height: auto;
+    border: 1px solid grey;
+    float: left;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+/*////////////////////*/
+
+.singleMessageDivMe {
+    color: white;
+    background-color: #15202b;
+    font-family: system-ui;
+    clear: both;
+}
+
+
+.singleMessageAvatarMe {
+    float: right;
+}
+
+.singleMessageAvatarImgMe {
+    background-color: aqua;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+}
+
+.singleMessageFullMe {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+
+
+.singleMessageHeaderMe {
+    background-color: lightblue;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+
+.singleMessageAuthorMe {
+    margin-right: 9%;
+    float: right;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.singleMessageTimeMe {
+    float: right;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8798a4;
+    display: inline-block;
+}
+
+.singleMessageContentMe {
+    margin-right: 1%;
+    text-align: left;
+    word-wrap: break-word;
+    padding: 10px;
+    border-radius: 1em;
+    width: auto;
+    max-width: 80%;
+    height: auto;
+    border: 1px solid grey;
+    float: right;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+/*/////////////////*/
 
 .chirpBody {
+    color: white;
+    margin-top: 1%;
     width: 90%;
     height: 200px;
     resize: none;
@@ -283,16 +414,19 @@ body {
     border-radius: 1em;
     position: relative;
     font-size: 1.25rem;
-    border: none;
     overflow: auto;
     outline: none;
-
+    border: 0.3em solid;
+    border-color: #1C436B;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    background-color: #142331;
 }
 
 .messageArea {
+    color: white;
+    background-color: #142331;
     float: left;
     width: 67%;
     height: 13vh;
@@ -303,14 +437,14 @@ body {
     border-radius: 1em;
     position: relative;
     font-size: 1.25rem;
-    border: none;
+    border: 0.3em solid;
     overflow: auto;
     outline: none;
 
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    background-color: white;
+    border-color: #1C436B;
 }
 
 /*//*/
@@ -359,6 +493,7 @@ body {
     z-index: 1;
     /*width: 50%;*/
 }
+
 .shrink-border:after {
     content: "";
     position: absolute;
@@ -366,10 +501,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #255471;
+    /*background-color: #1C436B;*/
     border-radius: 10rem;
     z-index: -2;
 }
+
 .shrink-border:before {
     content: "";
     position: absolute;
@@ -377,14 +513,16 @@ body {
     left: 0;
     width: 0;
     height: 100%;
-    background-color: #008fb3;
+    background-color: #1C436B;
     transition: all 0.3s;
     border-radius: 10rem;
     z-index: -1;
 }
+
 .shrink-border:hover {
     color: #fff;
 }
+
 .shrink-border:hover:before {
     width: 100%;
 }
@@ -444,7 +582,6 @@ body {
 }
 
 
-
 .navbarButtons {
     justify-content: center;
     display: flex block;
@@ -468,7 +605,7 @@ body {
     cursor: pointer;
     display: inline-block;
     text-align: center;
-    background-color: #008fb3;
+    background-color: #1C436B;
     color: white;
     font-weight: bold;
     padding: 1.18em 1.32em 1.03em;
@@ -488,7 +625,7 @@ body {
     position: absolute;
     content: "";
     display: inline-block;
-    background-color: #008fb3;
+    background-color: #1C436B;
     border-radius: 50%;
     transition: transform 0.5s ease;
     transform: scale(0);
