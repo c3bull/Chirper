@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import chirperbezotoczki from '../images/chirperbezotoczki2.png';
-import {Button, ChakraProvider, Input, InputGroup, InputRightElement, Select} from "@chakra-ui/react";
+import {Button, ChakraProvider, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
@@ -28,13 +28,13 @@ const SignUp = () => {
         window.location.reload();
     };
 
-    const HandleChangeEmail = (event) => {
+/*    const HandleChangeEmail = (event) => {
         setEmail(event.currentTarget.value);
-    };
+    };*/
 
-    const HandleChangePass = (event) => {
+/*    const HandleChangePass = (event) => {
         setPassword(event.currentTarget.value);
-    };
+    };*/
 
     // const SetBirthdayDate = (event) => {
     //     console.log("wchodzi do birthday")

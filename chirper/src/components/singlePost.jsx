@@ -1,5 +1,4 @@
-import {background} from "@chakra-ui/react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 
 function SinglePost({id, author, content, likes}) {
@@ -19,18 +18,12 @@ function SinglePost({id, author, content, likes}) {
             data: payload
         })
             .then((response) => {
-                console.log('wchodzi do then resp')
                 setResponseLikes(response.data.likes)
                 console.log('res likes ' + response.data.likes)
-                console.log('Data has been sent to the server');
             })
             .catch(() => {
                 console.log('Internal server error');
             });
-        console.log("like")
-
-        console.log('ajdi ' + id)
-        // useEffect();
         if (liked) {
             setLiked(false);
         } else {
@@ -61,8 +54,8 @@ function SinglePost({id, author, content, likes}) {
                 <div className="blog_post_engagement">
                     <div>
                         <img onClick={liking} className="blog_post_heart"
-                             src="https://emojigraph.org/media/google/white-heart_1f90d.png"/>
-                        {responseLikes}, {liked.toString()}
+                             src="https://emojigraph.org/media/google/white-heart_1f90d.png" alt="Avatar"/>
+                        {responseLikes}
                     </div>
                 </div>
             </div>

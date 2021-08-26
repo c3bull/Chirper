@@ -1,6 +1,3 @@
-import {background} from "@chakra-ui/react";
-import {useEffect, useState} from "react";
-import axios from "axios";
 
 function SingleMessage({author, content, time}) {
 
