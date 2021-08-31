@@ -28,6 +28,7 @@ class App extends React.Component {
                 const data = response.data;
                 this.setState({posts: data});
                 console.log('Data has been received!');
+                console.log('Otrzymane posty z serwera: ' + JSON.stringify(data[data.length-1]));
             })
             .catch(() => {
                 alert('Error retrieving data!');
@@ -41,6 +42,7 @@ class App extends React.Component {
 
 
     submit = (event) => {
+        //this.props.dispatch({type:"GET_USER_NICKNAME"});
         event.preventDefault();
         console.log('login nickname ' + this.props.userNickname)
         const payload = {
@@ -85,6 +87,8 @@ class App extends React.Component {
                 author={post.author}
                 content={post.content}
                 likes={post.likes}
+                date={post.date}
+                time={post.time}
             />
             /*<div key={index} className="blog-post__display">
                 <h3>{post.author}</h3>

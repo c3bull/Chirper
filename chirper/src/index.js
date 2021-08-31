@@ -15,13 +15,17 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 userNickname: action.payload
-            }
+            };
+        case "GET_USER_NICKNAME":
+            return {
+                userNickname: state.userNickname
+            };
         default:
             return state;
     }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer,initialState)
 
 ReactDOM.render(
     <BrowserRouter>
