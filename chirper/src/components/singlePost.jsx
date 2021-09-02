@@ -1,28 +1,33 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
+import {decodeToken} from "react-jwt";
 
-function SinglePost({id, author, content, likes,date,time}) {
+function SinglePost({id, author, content, likes, date, time, likedBy}) {
 
     const [liked, setLiked] = useState(false);
     const [responseLikes, setResponseLikes] = useState(likes);
+    const [likedByChanged, setLikedByChanged] = useState(likedBy)
 
     const payload = {
         isLiked: liked,
-        postId: id
+        postId: id,
+        nickname: decodeToken(localStorage.getItem('token')).nickname
     };
+
+    useEffect(() => {
+        setLiked(likedByChanged.includes((decodeToken(localStorage.getItem('token')).nickname)));
+        console.log('likedby ' + likedByChanged.includes((decodeToken(localStorage.getItem('token')).nickname)));
+
+        // changingHeart()
+    });
 
     const WhenPosted = () => {
         let today = new Date();
-        let post = date.substr(6,9)+'-'+date.substr(3,2)+'-'+date.substr(0,2) +'T'+time+":00";
+        let post = date.substr(6, 9) + '-' + date.substr(3, 2) + '-' + date.substr(0, 2) + 'T' + time + ":00";
         //let post = "'2021/08/31 12:55'";
         let postDate = new Date(post)
-        //console.log(content + ' today ' + today)
-       //console.log(content + ' post ' + post)
-        //console.log(content + ' postDate ' + postDate)
         //let post = new Date);
-        let diffMs = (today-postDate);
-        //console.log(content + " diffMs " + diffMs)
-        //console.log(content + 'liczba minut ' + Math.round(((diffMs % 86400000) % 3600000) / 60000))
+        let diffMs = (today - postDate);
         let result = Math.round(((diffMs % 86400000) % 3600000) / 60000);
         return result;
     };
@@ -35,18 +40,30 @@ function SinglePost({id, author, content, likes,date,time}) {
         })
             .then((response) => {
                 setResponseLikes(response.data.likes)
-                console.log('res likes ' + response.data.likes)
+                setLikedByChanged(response.data.likedBy)
+                // changingHeart();
             })
             .catch(() => {
                 console.log('Internal server error');
             });
-        if (liked) {
-            setLiked(false);
-        } else {
-            setLiked(true)
-        }
+        // if (liked) {
+        //     setLiked(false);
+        // } else {
+        //     setLiked(true)
+        // }
 
     }
+
+    // const changingHeart = () => {
+    //     const image = document.getElementById("imageHeart");
+    //     if (liked) {
+    //         image.src = "https://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/256/heart-icon.png"
+    //         // image.src = "https://emojigraph.org/media/google/white-heart_1f90d.png"
+    //     } else {
+    //         // image.src = "https://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/256/heart-icon.png"
+    //         image.src = "https://emojigraph.org/media/google/white-heart_1f90d.png"
+    //     }
+    // }
 
     return (
         <div className="blog-post__display_new">
@@ -70,17 +87,16 @@ function SinglePost({id, author, content, likes,date,time}) {
                 </div>
                 <div className="blog_post_engagement">
                     <div>
-                        <img onClick={liking} className="blog_post_heart"
-                             src="https://emojigraph.org/media/google/white-heart_1f90d.png" alt="Avatar"/>
+                        {liked ? <img onClick={liking} className="blog_post_heart" id="imageHeart"
+                                      src="https://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/256/heart-icon.png" alt="Avatar"/> :
+                            <img onClick={liking} className="blog_post_heart" id="imageHeart"
+                            src="https://emojigraph.org/media/google/white-heart_1f90d.png" alt="Avatar"/>}
+                        {/*<img onClick={liking} className="blog_post_heart" id="imageHeart"*/}
+                        {/*     src="https://emojigraph.org/media/google/white-heart_1f90d.png" alt="Avatar"/>*/}
                         {responseLikes}
                     </div>
                 </div>
             </div>
-            {/*<strong>{author}</strong>
-            <p>{content}</p>
-            <small>{likes} Lajkuff</small>
-            <br/>*/}
-
         </div>
     )
 }

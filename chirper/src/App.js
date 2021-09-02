@@ -5,6 +5,7 @@ import SignUp from "./components/signUp";
 import Navbar from "./components/navbar";
 import {Switch} from "react-router-dom";
 import Chat from "./components/chat";
+import Profile from "./components/profile";
 import {Route, Redirect} from 'react-router'
 import { isExpired, decodeToken  } from "react-jwt";
 
@@ -29,7 +30,7 @@ function App() {
                 <Route path="/" exact component={MainPage}/>
                 <Route path="/" exact component={Chat}/>
                 <Route path="/profile" exact component={Navbar}/>
-                <Route path="/profile" exact component={MainPage}/>
+                <Route path="/profile" exact component={Profile}/>
                 <Route path="/profile" exact component={Chat}/>
 
 

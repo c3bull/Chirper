@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
 import SinglePost from "./singlePost";
+import {decodeToken} from "react-jwt";
 
 class App extends React.Component {
 
@@ -41,12 +42,13 @@ class App extends React.Component {
     };
 
 
-    submit = (event) => {
+    submit = () => {
         //this.props.dispatch({type:"GET_USER_NICKNAME"});
-        event.preventDefault();
-        console.log('login nickname ' + this.props.userNickname)
+        // event.preventDefault();
+        console.log('login nickname ' + (decodeToken(localStorage.getItem('token')).nickname))
         const payload = {
-            author: this.props.userNickname,
+            // author: decodeToken(localStorage.getItem('token')),
+            author: decodeToken(localStorage.getItem('token')).nickname,
             content: this.state.content,
             likes: this.state.likes
         };
@@ -89,6 +91,8 @@ class App extends React.Component {
                 likes={post.likes}
                 date={post.date}
                 time={post.time}
+                likedBy={post.likedBy}
+                // nickname={post.nickname}
             />
             /*<div key={index} className="blog-post__display">
                 <h3>{post.author}</h3>

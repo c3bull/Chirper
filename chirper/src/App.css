@@ -29,6 +29,7 @@ body {
 .chirperLogo {
     width: 25vh;
     height: 25vh;
+    float: left;
 }
 
 #loginBackground {
@@ -50,9 +51,9 @@ body {
 #signUpBackground {
     background-color: #15202b;
     height: 100vh;
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    /*align-items: center;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
 }
 
 #monthOptions {
@@ -108,38 +109,42 @@ body {
 }
 
 .blogMessage {
+    background-color: #192734;
     height: 84vh;
     float: left;
     overflow-y: scroll;
-    width: 30%;
+    width: 28%;
     display: flex;
     /*display: block;*/
     flex-direction: column;
     text-align: center;
-    margin: auto;
+    /*margin: auto;*/
     align-content: center;
+    border-radius: 1em;
+    margin: 1%
     /*justify-content: center;*/
 }
 
 .sendMessage {
-    margin-top: 1vh;
     float: left;
     width: 30%;
-    height: 15vh;
+    height: 10vh;
 }
 
 
 .sendMessageButton {
     float: right;
-    margin-left: 0.5em;
-    height: 2.5em;
-    padding: 0em 0.5em 0em 2.4em;
+    margin-right: 3%;
+    /*margin-left: 0.5em;*/
+    height: 100%;
+    padding-right: 23%;
+    /*padding: 0em 0.5em 0em 2.4em;*/
     font-size: 3em;
     font-weight: bold;
     font-family: "Open Sans";
     text-transform: uppercase;
     color: #1C436B;
-    background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em 0.07em transparent;
+    background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em -0.3em transparent;
     background-size: 54px 204px;
     border-radius: 2em;
     border: 0.15em solid #1C436B;
@@ -183,6 +188,7 @@ body {
 }
 
 .blog_post_heart {
+    cursor: pointer;
     width: 18px;
     height: 18px;
     position: relative;
@@ -197,7 +203,10 @@ body {
     overflow: hidden;
     font-family: system-ui;
     clear: both;
+}
 
+.blog-post__display_new:hover {
+    background-color: #202e3a;
 }
 
 .blog_post_author {
@@ -267,9 +276,13 @@ body {
 
 .singleMessageDiv {
     color: white;
-    background-color: #15202b;
+    /*background-color: #15202b;*/
     font-family: system-ui;
     clear: both;
+}
+
+.singleMessageDiv:hover {
+    background-color: #202e3a;
 }
 
 .singleMessageAvatar {
@@ -403,8 +416,9 @@ body {
 /*/////////////////*/
 
 .chirpBody {
+    padding: 10px;
     color: white;
-    margin-top: 1%;
+    margin-top: 2%;
     width: 90%;
     height: 200px;
     resize: none;
@@ -425,13 +439,14 @@ body {
 }
 
 .messageArea {
+    padding: 10px;
     color: white;
     background-color: #142331;
     float: left;
     width: 67%;
-    height: 13vh;
+    height: 10vh;
     resize: none;
-    margin-left: 2%;
+    margin-left: 3%;
     justify-content: center;
     display: flex block;
     border-radius: 1em;
@@ -645,4 +660,98 @@ body {
 .addChirp:hover:before,
 .addChirp:hover:after {
     transform: none;
+}
+
+
+#profileDiv {
+    width: 40%;
+    float: left;
+    overflow-y: scroll;
+    height: 100vh;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    justify-items: center;
+
+}
+
+#backgroundPhotoProfile {
+    width: 100%;
+    height: 30%;
+}
+
+.backgroundPhotoProfileImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+}
+
+#photoProfile {
+    padding: 2%;
+    float: left;
+    width: 100%;
+}
+
+.photoProfileImg {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+#aboutMeProfile {
+    float: left;
+    padding: 2%;
+    width: 100%;
+}
+
+#profileName {
+    width: 100%;
+    height: 20px;
+    float: left;
+    color: white;
+}
+
+#profileNickname {
+    width: 100%;
+    height: 20px;
+    float: left;
+    color: white;
+}
+
+#myPostsProfile {
+    float: left;
+    width: 100%;
+    /*padding: 2%;*/
+}
+
+#profileDescription {
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    color: white;
+}
+
+#alreadyAccSign{
+    float:left;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40%;
+    align-items: flex-end;
+}
+
+#signForm{
+    float: left;
+}
+
+#chirperLogoDiv{
+    float: left;
+}
+
+#chirperAndForm{
+    float: left;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }

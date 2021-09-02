@@ -1,8 +1,9 @@
+import {decodeToken} from "react-jwt";
 
 function SingleMessage({author, content, time}) {
 
     let final;
-    if ({author}.author === "piec") {
+    if ({author}.author === decodeToken(localStorage.getItem('token')).nickname) {
 
         final = <div className="singleMessageDivMe">
             <div className="singleMessageHeaderMe">
