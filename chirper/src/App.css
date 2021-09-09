@@ -13,8 +13,8 @@
 html, body {
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -30,6 +30,35 @@ body {
     width: 25vh;
     height: 25vh;
     float: left;
+    margin-right: 2%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.chirperLogoNavbar{
+    height: 40%;
+    width: 55%;
+    cursor: pointer;
+}
+
+#profileName{
+    font-family: Helvetica, serif;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+#profileNickname{
+    font-family: Helvetica, serif;
+    font-weight: lighter;
+    font-size: 15px;
+    color: #008fb3;
+    margin-bottom: 5%;
+}
+
+#profileDescription{
+    font-family: Helvetica, serif;
+    margin-bottom: 2%;
 }
 
 #loginBackground {
@@ -51,36 +80,43 @@ body {
 #signUpBackground {
     background-color: #15202b;
     height: 100vh;
-    /*align-items: center;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
 }
 
 #monthOptions {
     width: 33%;
     float: left;
+    color: #008fb3;
 }
 
 #dayOptions {
     width: 33%;
     float: left;
+    color: #008fb3;
 }
 
 #yearOptions {
     width: 34%;
     float: left;
+    color: #008fb3;
+}
+
+#birthdayInputs{
+    position: relative;
+    padding: 6px 5px 5px 5px;
+    background: #008fb3;
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
 }
 
 #formSign {
-    margin: 11px;
-}
-
-#formInput {
-    margin-top: 3px;
+    width: 35%;
+    margin: 11px 11px 11px 3%;
 }
 
 .formInput {
-    margin-top: 3px;
+    margin-bottom: 8px;
+    color: white;
 }
 
 #navbarDiv {
@@ -88,13 +124,11 @@ body {
     float: left;
     height: 100vh;
     display: flex;
-    /*display: block;*/
     flex-direction: column;
     text-align: center;
     padding-top: 50px;
     margin: auto;
     align-content: center;
-    /*justify-content: center;*/
 }
 
 #mainPageDiv {
@@ -108,21 +142,22 @@ body {
 
 }
 
+.ChatDiv{
+
+}
+
 .blogMessage {
     background-color: #192734;
-    height: 84vh;
+    height: 85vh;
     float: left;
     overflow-y: scroll;
     width: 28%;
     display: flex;
-    /*display: block;*/
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
-    /*margin: auto;*/
     align-content: center;
     border-radius: 1em;
     margin: 1%
-    /*justify-content: center;*/
 }
 
 .sendMessage {
@@ -134,19 +169,17 @@ body {
 
 .sendMessageButton {
     float: right;
-    margin-right: 3%;
-    /*margin-left: 0.5em;*/
     height: 100%;
     padding-right: 23%;
-    /*padding: 0em 0.5em 0em 2.4em;*/
+    margin-right: 10%;
     font-size: 3em;
     font-weight: bold;
-    font-family: "Open Sans";
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     text-transform: uppercase;
     color: #1C436B;
-    background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em -0.3em transparent;
-    background-size: 54px 204px;
-    border-radius: 2em;
+    background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 42% 10% transparent;
+    background-size: 55px 200px;
+    border-radius: 50%;
     border: 0.15em solid #1C436B;
     cursor: pointer;
     transition: all 0.3s ease 0s;
@@ -158,19 +191,17 @@ body {
     border-color: #008fb3;
     background-position: 0.75em bottom;
     -webkit-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 .sendMessageButton:focus {
     background-position: 2em -4em;
     -webkit-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
 @font-face {
-    font-family: 'Open Sans';
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-style: normal;
     font-weight: 100;
     src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
@@ -178,13 +209,10 @@ body {
 
 
 .blog_post_engagement {
-    margin-left: 15px;
-    margin-right: 20px;
-    margin-top: 10px;
     font-size: 15px;
     line-height: 16px;
     color: #8798a4;
-    margin-bottom: 15px;
+    margin: 10px 20px 15px 15px;
 }
 
 .blog_post_heart {
@@ -201,7 +229,7 @@ body {
     color: white;
     background-color: #15202b;
     overflow: hidden;
-    font-family: system-ui;
+    font-family: system-ui, serif;
     clear: both;
 }
 
@@ -214,7 +242,6 @@ body {
     font-size: 15px;
     line-height: 20px;
     color: #ffffff;
-    /*background-color: red;*/
     display: inline-block;
 
 }
@@ -245,6 +272,7 @@ body {
 }
 
 .blog_post_content {
+    font-family: Helvetica, serif;
     margin-left: 15px;
     margin-right: 20px;
     margin-top: 10px;
@@ -258,6 +286,7 @@ body {
 }
 
 .blog_post_nickname {
+    font-family: Helvetica, serif;
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
@@ -276,8 +305,7 @@ body {
 
 .singleMessageDiv {
     color: white;
-    /*background-color: #15202b;*/
-    font-family: system-ui;
+    font-family: system-ui, serif;
     clear: both;
 }
 
@@ -344,12 +372,10 @@ body {
     color: #ffffff;
 }
 
-/*////////////////////*/
-
 .singleMessageDivMe {
     color: white;
     background-color: #15202b;
-    font-family: system-ui;
+    font-family: system-ui, serif;
     clear: both;
 }
 
@@ -413,8 +439,6 @@ body {
     color: #ffffff;
 }
 
-/*/////////////////*/
-
 .chirpBody {
     padding: 10px;
     color: white;
@@ -430,8 +454,7 @@ body {
     font-size: 1.25rem;
     overflow: auto;
     outline: none;
-    border: 0.3em solid;
-    border-color: #1C436B;
+    border: 0.3em solid #1C436B;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -443,7 +466,7 @@ body {
     color: white;
     background-color: #142331;
     float: left;
-    width: 67%;
+    width: 55%;
     height: 10vh;
     resize: none;
     margin-left: 3%;
@@ -452,17 +475,13 @@ body {
     border-radius: 1em;
     position: relative;
     font-size: 1.25rem;
-    border: 0.3em solid;
     overflow: auto;
     outline: none;
-
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    border-color: #1C436B;
+    border: 0.3em solid #1C436B;
 }
-
-/*//*/
 
 .blog-post__display {
     border-top: 1px solid grey;
@@ -499,14 +518,13 @@ body {
     padding: 0.75rem 1.25rem;
     border-radius: 10rem;
     color: #fff;
-    text-transform: uppercase;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-family: Helvetica, serif;
     letter-spacing: 0.15rem;
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
     z-index: 1;
-    /*width: 50%;*/
 }
 
 .shrink-border:after {
@@ -516,7 +534,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /*background-color: #1C436B;*/
     border-radius: 10rem;
     z-index: -2;
 }
@@ -546,8 +563,6 @@ body {
 .draw-border {
     display: inline-block;
     text-align: center;
-    /*background: var(--color);*/
-    /*color: var(--bg);*/
     font-weight: bold;
     padding: 1.18em 1.32em 1.03em;
     line-height: 1;
@@ -555,7 +570,6 @@ body {
     position: relative;
     min-width: 8.23em;
     text-decoration: none;
-    /*font-family: var(--font);*/
     font-size: 1.25rem;
 }
 
@@ -566,7 +580,6 @@ body {
     position: absolute;
     content: "";
     display: inline-block;
-    /*background: var(--color);*/
     border-radius: 50%;
     transition: transform 1s ease;
     transform: scale(0);
@@ -603,7 +616,6 @@ body {
     text-align: center;
     color: white;
     font-weight: bold;
-    /*padding: 1.18em 1.32em 1.03em;*/
     padding-left: 30%;
     padding-right: 30%;
     line-height: 1;
@@ -662,7 +674,6 @@ body {
     transform: none;
 }
 
-
 #profileDiv {
     width: 40%;
     float: left;
@@ -720,7 +731,6 @@ body {
 #myPostsProfile {
     float: left;
     width: 100%;
-    /*padding: 2%;*/
 }
 
 #profileDescription {
@@ -740,18 +750,37 @@ body {
     align-items: flex-end;
 }
 
+#loginInput{
+    margin-bottom: 8px;
+}
+
 #signForm{
+    position: absolute;
+    justify-content: center;
     float: left;
+    margin: 85% 30% 30% 65%;
+    width: 800px;
 }
 
 #chirperLogoDiv{
-    float: left;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 40%;
+    margin-right: 0;
+    height: 100%;
+    width: 60%;
+
 }
 
 #chirperAndForm{
-    float: left;
+    position: absolute;
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+#createAccountButton{
+    margin-top: 15px;
+    margin-bottom: 8px;
 }

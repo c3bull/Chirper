@@ -13,7 +13,6 @@ const Login = (props) => {
     const [password, setPassword] = useState('')
     const [show, setShow] = useState(false)
 
-
     const handleClick = () => setShow(!show)
     const history = useHistory();
 
@@ -36,25 +35,21 @@ const Login = (props) => {
                 password: password
             }
         }).then((response) => {
-             props.dispatch({type: "SAVE_USER_NICKNAME", payload: response.data.user.nickname})
-
+            props.dispatch({type: "SAVE_USER_NICKNAME", payload: response.data.user.nickname})
             localStorage.setItem('token', response.data.token.token);
             HandleChangeRoute();
-
-
         }).catch((error) => {
             document.getElementById('loginBackground').style.backgroundColor = '#A51010';
             setTimeout(function () {
-                document.getElementById('loginBackground').style.backgroundColor = '#255471';
+                document.getElementById('loginBackground').style.backgroundColor = '#15202b';
             }, 400);
             console.log(error);
         });
 
         if (email.trim() === '') {
-            setEmail('Email is required!');
-        }
-        if (password.trim() === '') {
-            setPassword('Password is required!');
+            alert("Email jest wymagany!")
+        } else if (password.trim() === '') {
+            alert("Hasło jest wymagane!")
         }
 
     };
@@ -73,7 +68,7 @@ const Login = (props) => {
             <img className="chirperLogo" src={chirper8} alt="chirperLogo"/>
             <form onSubmit={Validate}>
                 <ChakraProvider>
-                    <Input placeholder="email" size="lg" onChange={HandleChangeEmail}/>
+                    <Input id="loginInput" placeholder="Email" size="lg" onChange={HandleChangeEmail}/>
                     <InputGroup size="md">
                         <Input
                             pr="4.5rem"
@@ -82,16 +77,14 @@ const Login = (props) => {
                             onChange={HandleChangePass}
                         />
                         <InputRightElement width="4.5rem">
-                            <Button h="1.75rem" size="sm" onClick={handleClick}>
+                            <Button h="1.75rem" size="sm" color="black" onClick={handleClick}>
                                 {show ? "Hide" : "Show"}
                             </Button>
                         </InputRightElement>
                     </InputGroup>
                     <br/>
-                    <Button colorScheme="blue" type="submit">Log in</Button>
+                    <Button colorScheme="blue" type="submit">Log in</Button>&nbsp;&nbsp;
                     <Button colorScheme="blue" onClick={SignUpButton}>Sign up</Button>
-                    <p>{email}</p>
-                    <p>{password}</p>
                 </ChakraProvider>
             </form>
         </div>

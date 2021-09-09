@@ -4,25 +4,18 @@ import igor from '../images/igor.jpg';
 import igor2 from '../images/igor2.jpg';
 import axios from "axios";
 import ProfilePosts from "./profilePosts";
+import {decodeToken} from "react-jwt";
 
 class Profile extends React.Component {
 
-
     state = {
-        author: '',
-        content: '',
         likes: 0,
-        posts: []
+        posts: [],
     };
 
     componentDidMount = () => {
         this.getBlogPost();
     };
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     this.getBlogPost();
-    // }
-
 
     getBlogPost = () => {
         axios.get('http://localhost:3001/api/feed/posts')
@@ -45,18 +38,18 @@ class Profile extends React.Component {
 
         if (!posts.length) return null;
 
-            return posts.slice(0).reverse().map((post, index) => (
-                <ProfilePosts
-                    id={post._id}
-                    author={post.author}
-                    content={post.content}
-                    likes={post.likes}
-                />
-            ));
-
-
+        return posts.slice(0).reverse().map((post, index) => (
+            <ProfilePosts
+                id={post._id}
+                author={post.author}
+                content={post.content}
+                likes={post.likes}
+                date={post.date}
+                time={post.time}
+                likedBy={post.likedBy}
+            />
+        ));
     };
-
 
     render() {
 
@@ -71,18 +64,15 @@ class Profile extends React.Component {
                          src={igor} alt="Avatar"/>
                 </div>
                 <div id="aboutMeProfile">
-                    <div id="profileName">{this.props.userNickname}</div>
-                    <div id="profileNickname">@{this.props.userNickname}</div>
-                    <div id="profileDescription">jestem śmieciem jestem śmieciem jestem śmieciem jestem śmieciem jestem
-                        śmieciem jestem śmieciem jestem śmieciem jestem śmieciem
-                    </div>
+                    <div id="profileName">{decodeToken(localStorage.getItem('token')).name} {decodeToken(localStorage.getItem('token')).surname}</div>
+                    <div id="profileNickname">@{decodeToken(localStorage.getItem('token')).nickname}</div>
+                    <div id="profileDescription">To jest opis profilu.</div>
                 </div>
                 <div id="myPostsProfile">
                     <div className="blog-">
                         {this.displayBlogPost(this.state.posts)}
                     </div>
                 </div>
-
             </div>
         )
 

@@ -14,10 +14,8 @@ function App() {
     let $auth = {
         isLoggedIn: function () {
             if (isExpired(localStorage.getItem('token')) || !decodeToken(localStorage.getItem('token'))) {
-                console.log('dec tok ' + decodeToken(localStorage.getItem('token')))
                 return false;
             } else {
-                console.log('dec tok2 ' + JSON.stringify(decodeToken(localStorage.getItem('token'))));
                 return true;
             }
         }
@@ -41,16 +39,6 @@ function App() {
                         <Redirect to="/login"/>
                     )
                 )}/>
-
-
-            {/*    render={props => {*/}
-            {/*    if (isExpired(localStorage.getItem('token'))) {*/}
-            {/*        return <Redirect to="/" />;*/}
-            {/*    }*/}
-            {/*    return <Posts />;*/}
-            {/*}}*/}
-
-
             </div>
 
             <Switch>

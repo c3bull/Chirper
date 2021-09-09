@@ -1,5 +1,6 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
+import chirper8 from '../images/chirper8.png';
 
 const Navbar = () => {
 
@@ -7,14 +8,6 @@ const Navbar = () => {
 
     const NavbarHome = () => {
         history.push('/');
-    };
-
-    const NavbarLogIn = () => {
-        history.push('/login');
-    };
-
-    const NavbarSignUp = () => {
-        history.push('/signUp');
     };
 
     const NavbarProfile = () => {
@@ -29,14 +22,9 @@ const Navbar = () => {
     return (
         <div id="navbarDiv">
             <div className="navbarButtons">
+                <img className="chirperLogoNavbar" src={chirper8} alt="chirperLogo" onClick={NavbarHome}/>
                 <div className="shrink-border" onClick={NavbarHome}>Home</div>
-
-                <div className="shrink-border" onClick={NavbarLogIn}>Login</div>
-
-                <div className="shrink-border" onClick={NavbarSignUp}>Sign Up</div>
-
                 <div className="shrink-border" onClick={NavbarProfile}>Profile</div>
-
                 <div className="shrink-border" onClick={NavbarLogout}>Log Out</div>
             </div>
         </div>
