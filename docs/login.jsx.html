@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: login.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: login.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {Button, ChakraProvider, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
+import React, {useState} from 'react';
+import "../App.css"
+import chirper8 from '../images/chirper8.png';
+import {useHistory} from "react-router-dom";
+
+const axios = require('axios');
+
+/**
+ * Functional component responsible for logging in.
+ * @constructor
+ * @returns {JSX.Element} Returns input fields and buttons to log in and sign up.
+ */
+const Login = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [show, setShow] = useState(false)
+
+    /**
+     * Sets the boolean hook to an opposite value.
+     */
+    const handleClick = () => setShow(!show)
+    const history = useHistory();
+
+    /**
+     * Uses history variable to switch to another component.
+     */
+    const HandleChangeRoute = () => {
+        history.push('/');
+    };
+
+    /**
+     * Uses history variable to switch to another component.
+     */
+    const SignUpButton = () => {
+        history.push('/signUp');
+    };
+
+    /**
+     * Uses Axios' POST method to send log in information to a server.
+     * If successful sets a local storage token value and switches component.
+     * If POST fails then sets background to red.
+     * @param {Event} event - Action or occurrence that happen.
+     */
+    const Validate = (event) => {
+        event.preventDefault();
+        axios({
+            method: 'post',
+            url: 'http://localhost:3001/api/user/auth',
+            data: {
+                email: email,
+                password: password
+            }
+        }).then((response) => {
+            localStorage.setItem('token', response.data.token.token);
+            HandleChangeRoute();
+        }).catch((error) => {
+            document.getElementById('loginBackground').style.backgroundColor = '#A51010';
+            setTimeout(function () {
+                document.getElementById('loginBackground').style.backgroundColor = '#15202b';
+            }, 400);
+            console.log(error);
+        });
+
+        if (email.trim() === '') {
+            alert("Email jest wymagany!")
+        } else if (password.trim() === '') {
+            alert("Hasło jest wymagane!")
+        }
+
+    };
+
+    /**
+     * Sets hook to correct value.
+     * @param {Event} event - Action or occurrence that happen.
+     */
+    const HandleChangeEmail = (event) => {
+        setEmail(event.currentTarget.value);
+    };
+
+    /**
+     * Sets hook to correct value.
+     * @param {Event} event - Action or occurrence that happen.
+     */
+    const HandleChangePass = (event) => {
+        setPassword(event.currentTarget.value);
+    };
+
+    return (
+        &lt;div id="loginBackground">
+            &lt;img className="chirperLogo" src={chirper8} alt="chirperLogo"/>
+            &lt;form onSubmit={Validate}>
+                &lt;ChakraProvider>
+                    &lt;Input id="loginInput" placeholder="Email" size="lg" onChange={HandleChangeEmail}/>
+                    &lt;InputGroup size="md">
+                        &lt;Input
+                            pr="4.5rem"
+                            type={show ? "text" : "password"}
+                            placeholder="Enter password"
+                            onChange={HandleChangePass}
+                        />
+                        &lt;InputRightElement width="4.5rem">
+                            &lt;Button h="1.75rem" size="sm" color="black" onClick={handleClick}>
+                                {show ? "Hide" : "Show"}
+                            &lt;/Button>
+                        &lt;/InputRightElement>
+                    &lt;/InputGroup>
+                    &lt;br/>
+                    &lt;Button colorScheme="blue" type="submit">Log in&lt;/Button>&amp;nbsp;&amp;nbsp;
+                    &lt;Button colorScheme="blue" onClick={SignUpButton}>Sign up&lt;/Button>
+                &lt;/ChakraProvider>
+            &lt;/form>
+        &lt;/div>
+    )
+};
+
+
+
+export default Login;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Chat.html">Chat</a></li><li><a href="Login.html">Login</a></li><li><a href="Navbar.html">Navbar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfilePosts.html">ProfilePosts</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="SingleMessage.html">SingleMessage</a></li><li><a href="SinglePost.html">SinglePost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Feb 02 2022 16:38:43 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

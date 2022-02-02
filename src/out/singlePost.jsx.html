@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: singlePost.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: singlePost.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useEffect, useState} from "react";
+import axios from "axios";
+import {decodeToken} from "react-jwt";
+import {Link} from "react-router-dom";
+import trashIcon from "../images/trash.png"
+
+/**
+ * Functional component with single post on homepage.
+* @param {String} id - user's id.
+* @param {String} author - author.
+* @param {String} name - user's name.
+* @param {String} surname - user's surname.
+* @param {String} content - message content.
+* @param {String} likes - number of likes.
+* @param {String} data - sent date.
+* @param {String} time - sent time.
+* @param {Array} likedBy - array with users who liked the post.
+* @returns {JSX.Element} Stylized single post in a div
+*/
+function SinglePost({id, author, name, surname, content, likes, date, time, likedBy}) {
+
+    const [liked, setLiked] = useState(false);
+    const [responseLikes, setResponseLikes] = useState(likes);
+    const [likedByChanged, setLikedByChanged] = useState(likedBy)
+
+    const payload = {
+        isLiked: liked,
+        postId: id,
+        nickname: decodeToken(localStorage.getItem('token')).nickname
+    };
+
+    /**
+     * Allows you to perform side effects in your components.
+    */
+    useEffect(() => {
+        setLiked(likedByChanged.includes((decodeToken(localStorage.getItem('token')).nickname)));
+    }, [likedByChanged]);
+
+    /**
+     * Calculates how much time has passed since sending the post.
+     * @returns {String} time in minutes, hours, days or weeks
+     */
+    const WhenPosted = () => {
+        let today = new Date();
+        let post = date.substr(6, 9) + '-' + date.substr(3, 2) + '-' + date.substr(0, 2) + 'T' + time + ":00";
+        let postDate = new Date(post)
+        let diff = Math.abs(today - postDate);
+        let minutes = Math.floor(diff / 60000);
+        let hours = minutes / 60;
+        let days = hours / 24;
+        let weeks = days / 7;
+
+        if (minutes &lt; 60) {
+            return Math.round(minutes) + "min";
+        } else if ((hours) &lt; 24) {
+            return Math.round(hours) + "h"
+        } else if (days &lt; 7) {
+            return Math.round(days) + " day(s)"
+        } else {
+            return Math.round(weeks) + " week(s)"
+        }
+    };
+
+    /**
+     * Uses Axios' DELETE method to Delete the specific post
+     * If response successful, reload page
+     */
+    const deletePost = () => {
+        axios({
+            url: `http://localhost:3001/api/feed/deletepost/${id}`,
+            method: 'DELETE',
+            data: {
+                id: id,
+            }
+        })
+            .then((response) => {
+                window.location.reload(false);
+            })
+            .catch((e) => {
+                console.log('Internal server error');
+            });
+    }
+    /**
+     * Uses Axios' POST method to like a post
+     * If response successful, set response data
+     */
+    const liking = () => {
+        axios({
+            url: 'http://localhost:3001/api/feed/update',
+            method: 'POST',
+            data: payload
+        })
+            .then((response) => {
+                setResponseLikes(response.data.likes)
+                setLikedByChanged(response.data.likedBy)
+            })
+            .catch(() => {
+                console.log('Internal server error');
+            });
+    }
+
+    return (
+        &lt;div className="blog-post__display_new">
+
+            &lt;div className="blog_post_avatar_div">
+                {name !== undefined ? &lt;div className="blog_post_avatar">{name.substr(0,1)}{surname.substr(0,1)}&lt;/div>:&lt;div className="blog_post_avatar"/>}
+            &lt;/div>
+
+            &lt;div className="blog_post_full">
+
+                &lt;div className="blog_post_header">
+                    &lt;Link to={`/profile/${author}`}>
+                        &lt;div className="blog_post_author">{name}&amp;nbsp;{surname}&amp;nbsp;&lt;/div>
+                    &lt;/Link>
+                    &lt;div className="blog_post_nickname">@{author}&lt;/div>
+                    &lt;div className="blog_post_postTime">&amp;nbsp;·&amp;nbsp;{WhenPosted()}&lt;/div>
+                    {decodeToken(localStorage.getItem('token')).nickname === author ?
+                        &lt;img className="blog_post_delete" src={trashIcon} onClick={() => {
+                            deletePost()
+                        }} alt="Avatar"/> : false}
+                &lt;/div>
+
+                &lt;div className="blog_post_content">
+                    {content}
+                &lt;/div>
+                &lt;div className="blog_post_engagement">
+                    &lt;div>
+                        {liked ? &lt;img onClick={liking} className="blog_post_heart" id="imageHeart"
+                                      src="https://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/256/heart-icon.png"
+                                      alt="Avatar"/> :
+                            &lt;img onClick={liking} className="blog_post_heart" id="imageHeart"
+                                 src="https://emojigraph.org/media/google/white-heart_1f90d.png" alt="Avatar"/>}
+                        {responseLikes}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    )
+}
+
+export default SinglePost;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Chat.html">Chat</a></li><li><a href="Profile.html">Profile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#ProfilePosts">ProfilePosts</a></li><li><a href="global.html#SignUp">SignUp</a></li><li><a href="global.html#SingleMessage">SingleMessage</a></li><li><a href="global.html#SinglePost">SinglePost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Feb 02 2022 16:07:16 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: signUp.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: signUp.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from 'react';
+import chirperLogo from '../images/chirper8.png';
+import {Button, ChakraProvider, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
+import {useHistory} from "react-router-dom";
+import axios from "axios";
+
+/**
+ * Functional component with form to sign up.
+ * @constructor
+ * @returns {JSX.Element} page with form, inputs and buttons to sign up
+ */
+const SignUp = () => {
+
+    const [nickname, setNickname] = useState('')
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
+    const [password, setPassword] = useState('')
+    const [show, setShow] = useState(false)
+    const [birthdayDay, setBirthdayDay] = useState('01')
+    const [birthdayMonth, setBirthdayMonth] = useState('01')
+    const [birthdayYear, setBirthdayYear] = useState('1988')
+    const [birthday, setBirthday] = useState('01-01-1988')
+    const [bio, setBio] = useState('This is my bio.')
+
+    /**
+     * Handle click - show or hide password.
+     */
+    const handleClick = () => setShow(!show)
+
+    const history = useHistory();
+
+    /**
+     * Uses history.push() to change Route to /login.
+     */
+    const HandleChangeRoute = () => {
+        history.push('/login');
+        window.location.reload();
+    };
+
+    /**
+     * Uses Axios' POST method to send user's data to the server.
+     * If response successful, change route else alert error
+     * @param {Event} event - Action or occurrence that happen.
+     */
+    const HandleSubmit = (event) => {
+        event.preventDefault();
+        if (Check()) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:3001/api/user/create',
+                data: {
+                    nickname: nickname,
+                    email: email,
+                    name: name,
+                    surname: surname,
+                    password: password,
+                    birthday: birthdayDay + "-" + birthdayMonth + "-" + birthdayYear,
+                    bio: bio,
+                }
+            }).then((response) => {
+                HandleChangeRoute();
+            }).catch((error) => {
+                alert("Podany email lub login są już używane!")
+                console.log(error);
+            });
+        };
+    };
+
+    /**
+     * Check if passwords are the same.
+     * @param {Event} event - Action or occurrence that happen.
+     * @returns {Boolean} true or false
+     */
+    const Check = () => {
+        if ((document.getElementById('password1').value === document.getElementById('password2').value) &amp;&amp; (document.getElementById('password1').value !== '')) {
+            return true;
+        } else {
+            document.getElementById('signUpBackground').style.backgroundColor = '#A51010';
+            setTimeout(function () {
+                document.getElementById('signUpBackground').style.backgroundColor = '#15202b';
+            }, 400);
+            document.getElementById('password1').style.borderColor = '#A51010';
+            document.getElementById('password2').style.borderColor = '#A51010';
+            return false;
+        }
+    };
+
+    return (
+        &lt;div id="signUpBackground">
+            &lt;div id="chirperAndForm">
+                &lt;div id="chirperLogoDiv">
+                    &lt;img className="chirperLogo" src={chirperLogo} alt="chirperLogo"/>
+                &lt;/div>
+
+                &lt;div id="signForm">
+                    &lt;form id="formSign" onSubmit={HandleSubmit}>
+                        &lt;ChakraProvider>
+                            &lt;Input className="formInput" placeholder="Nickname" size="lg"
+                                   onChange={e => setNickname(e.target.value)}/>&lt;br />
+                            &lt;Input className="formInput" placeholder="First Name" size="lg"
+                                   onChange={e => setName(e.target.value)}/>&lt;br />
+                            &lt;Input className="formInput" placeholder="Surname" size="lg"
+                                   onChange={e => setSurname(e.target.value)}/>&lt;br />
+                            &lt;Input className="formInput" placeholder="Email" size="lg"
+                                   onChange={e => setEmail(e.currentTarget.value)}/>&lt;br />
+                            &lt;InputGroup className="formInput" size="md">
+                                &lt;Input id="password1"
+                                       pr="4.5rem"
+                                       type={show ? "text" : "password"}
+                                       placeholder="Password"
+                                       onChange={e => setPassword(e.target.value)}
+                                />
+                                &lt;InputRightElement width="4.5rem">
+                                    &lt;Button h="1.75rem" size="sm" onClick={handleClick} color="black">
+                                        {show ? "Hide" : "Show"}
+                                    &lt;/Button>
+                                &lt;/InputRightElement>
+                            &lt;/InputGroup>
+                            &lt;Input className="formInput" id="password2"
+                                   pr="4.5rem"
+                                   type={show ? "text" : "password"}
+                                   placeholder="Repeat password"
+                            />
+
+                            &lt;div id="birthdayInputs">
+                                &lt;select className="formInput" id="dayOptions" variant="outline"
+                                        onChange={e => setBirthdayDay(e.target.value)} defaultValue="Day">
+                                    &lt;option value="01">1&lt;/option>
+                                    &lt;option value="02">2&lt;/option>
+                                    &lt;option value="03">3&lt;/option>
+                                    &lt;option value="04">4&lt;/option>
+                                    &lt;option value="05">5&lt;/option>
+                                    &lt;option value="06">6&lt;/option>
+                                    &lt;option value="07">7&lt;/option>
+                                    &lt;option value="08">8&lt;/option>
+                                    &lt;option value="09">9&lt;/option>
+                                    &lt;option value="10">10&lt;/option>
+                                    &lt;option value="11">11&lt;/option>
+                                    &lt;option value="12">12&lt;/option>
+                                    &lt;option value="13">13&lt;/option>
+                                    &lt;option value="14">14&lt;/option>
+                                    &lt;option value="15">15&lt;/option>
+                                    &lt;option value="16">16&lt;/option>
+                                    &lt;option value="17">17&lt;/option>
+                                    &lt;option value="18">18&lt;/option>
+                                    &lt;option value="19">19&lt;/option>
+                                    &lt;option value="20">20&lt;/option>
+                                    &lt;option value="21">21&lt;/option>
+                                    &lt;option value="22">22&lt;/option>
+                                    &lt;option value="23">23&lt;/option>
+                                    &lt;option value="24">24&lt;/option>
+                                    &lt;option value="25">25&lt;/option>
+                                    &lt;option value="26">26&lt;/option>
+                                    &lt;option value="27">27&lt;/option>
+                                    &lt;option value="28">28&lt;/option>
+                                    &lt;option value="29">29&lt;/option>
+                                    &lt;option value="30">30&lt;/option>
+                                    &lt;option value="31">31&lt;/option>
+                                &lt;/select>
+
+                                &lt;select className="formInput" id="monthOptions" variant="outline" onChange={e => setBirthdayMonth(e.target.value)} defaultValue="Month">
+                                    &lt;option value="01">January&lt;/option>
+                                    &lt;option value="02">February&lt;/option>
+                                    &lt;option value="03">March&lt;/option>
+                                    &lt;option value="04">April&lt;/option>
+                                    &lt;option value="05">May&lt;/option>
+                                    &lt;option value="06">June&lt;/option>
+                                    &lt;option value="07">July&lt;/option>
+                                    &lt;option value="08">August&lt;/option>
+                                    &lt;option value="09">September&lt;/option>
+                                    &lt;option value="10">October&lt;/option>
+                                    &lt;option value="11">November&lt;/option>
+                                    &lt;option value="12">December&lt;/option>
+                                &lt;/select>
+
+                                &lt;select className="formInput" id="yearOptions" variant="outline" onChange={e => setBirthdayYear(e.target.value)} defaultValue="Year">
+                                    &lt;option value="1988">1988&lt;/option>
+                                    &lt;option value="1989">1989&lt;/option>
+                                    &lt;option value="1990">1990&lt;/option>
+                                    &lt;option value="1991">1991&lt;/option>
+                                    &lt;option value="1992">1992&lt;/option>
+                                    &lt;option value="1993">1993&lt;/option>
+                                    &lt;option value="1994">1994&lt;/option>
+                                    &lt;option value="1995">1995&lt;/option>
+                                    &lt;option value="1996">1996&lt;/option>
+                                    &lt;option value="1997">1997&lt;/option>
+                                    &lt;option value="1998">1998&lt;/option>
+                                    &lt;option value="1999">1999&lt;/option>
+                                    &lt;option value="2000">2000&lt;/option>
+                                    &lt;option value="2001">2001&lt;/option>
+                                    &lt;option value="2002">2002&lt;/option>
+                                    &lt;option value="2003">2003&lt;/option>
+                                    &lt;option value="2004">2004&lt;/option>
+                                    &lt;option value="2005">2005&lt;/option>
+                                    &lt;option value="2006">2006&lt;/option>
+                                    &lt;option value="2007">2007&lt;/option>
+                                    &lt;option value="2008">2008&lt;/option>
+                                    &lt;option value="2009">2009&lt;/option>
+                                    &lt;option value="2010">2010&lt;/option>
+                                &lt;/select>
+                            &lt;/div>
+                            &lt;br/>
+                            &lt;Button id="createAccountButton" type="submit" colorScheme="blue">Create an account!&lt;/Button>&amp;nbsp;&amp;nbsp;
+                            &lt;Button colorScheme="blue" onClick={HandleChangeRoute}>Already have an account? Log In!&lt;/Button>
+
+                        &lt;/ChakraProvider>
+                    &lt;/form>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    )
+};
+
+export default SignUp;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Chat.html">Chat</a></li><li><a href="Login.html">Login</a></li><li><a href="Navbar.html">Navbar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfilePosts.html">ProfilePosts</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="SingleMessage.html">SingleMessage</a></li><li><a href="SinglePost.html">SinglePost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Feb 02 2022 16:38:43 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

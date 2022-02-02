@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: profile.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: profile.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {connect} from "react-redux";
+import axios from "axios";
+import ProfilePosts from "./profilePosts";
+import {decodeToken} from "react-jwt";
+import {useParams, withRouter} from "react-router";
+import {background} from "@chakra-ui/react";
+import trashIcon from "../images/trash.png";
+import editIcon from "../images/editprof.png";
+
+/**
+ * Class which includes all posts, user data and bio of specific user.
+ * @returns {JSX.Element} Returns background image, profile photo, all posts, user data and bio of specific user.
+ */
+class Profile extends React.Component {
+
+    state = {
+        id: '',
+        likes: 0,
+        posts: [],
+        firstName: '',
+        lastName: '',
+        nicknameDetails: '',
+        backgroundImage: '',
+        bio: '',
+        showBio: false,
+    };
+
+    /**
+     * function that calls functions getBlogPost, findUser and setting state of background image immediately after the component is mounted
+     */
+    componentDidMount = () => {
+        this.getBlogPost();
+        this.findUser();
+        this.setState({backgroundImage: 'https://picsum.photos/800'});
+    };
+
+    /**
+     * function that is fetching posts from the database using axios
+     */
+    getBlogPost = () => {
+        axios.get('http://localhost:3001/api/feed/posts')
+            .then((response) => {
+                const data = response.data;
+                this.setState({posts: data});
+                console.log('Data has been received!');
+            })
+            .catch(() => {
+                alert('Error retrieving data!');
+            });
+    }
+
+    /**
+     * function that is setting data for specific user using axios
+     */
+    findUser = () => {
+        const payload = {
+            author: this.props.match.params.nickname,
+        };
+
+        axios({
+            url: 'http://localhost:3001/api/user/find',
+            method: 'POST',
+            data: payload
+        })
+            .then((response) => {
+                this.setState({firstName: response.data[0].name});
+                this.setState({lastName: response.data[0].surname});
+                this.setState({nicknameDetails: response.data[0].nickname});
+                this.setState({id: response.data[0]._id});
+                this.setState({bio: response.data[0].bio});
+                // setResponseLikes(response.data.likes)
+                // setLikedByChanged(response.data.likedBy)
+            })
+            .catch((e) => {
+                console.log('Internal server error' + e);
+            });
+    }
+
+    /**
+     * function that is displaying all posts from database
+     * @returns {JSX.Element} Returns all posts by creating display of every single post on the profile by passing id, author, content, likes, date, time and liked by to component called ProfilePosts
+     */
+    displayBlogPost = (posts) => {
+
+        if (!posts.length) return null;
+
+        return posts.slice(0).reverse().map((post, index) => (
+            &lt;ProfilePosts
+                id={post._id}
+                author={post.author}
+                name={post.name}
+                surname={post.surname}
+                content={post.content}
+                likes={post.likes}
+                date={post.date}
+                time={post.time}
+                likedBy={post.likedBy}
+            />
+        ));
+    };
+
+    /**
+     * function that is setting profile description for specific user using axios
+     */
+    editBio = () => {
+        axios({
+            url: 'http://localhost:3001/api/user/editbio',
+            method: 'put',
+            data: {
+                bio: this.state.bio,
+                userId: this.state.id
+            }
+        })
+            .then((response) => {
+                this.setState({showBio: !this.state.showBio})
+            })
+            .catch((e) => {
+                console.log('Internal server error' + e);
+            });
+    }
+
+    render() {
+        return (
+            &lt;div id="profileDiv">
+                &lt;div id="backgroundPhotoProfile">
+                    &lt;img className="backgroundPhotoProfileImg"
+                         src={this.state.backgroundImage} alt="Avatar"/>
+                &lt;/div>
+                &lt;div id="photoProfile">
+                    &lt;div
+                        className="photoProfileImg">{this.state.firstName.substr(0, 1)}{this.state.lastName.substr(0, 1)}&lt;/div>
+                &lt;/div>
+                &lt;div id="aboutMeProfile">
+                    &lt;div
+                        id="profileName">{this.state.firstName} {this.state.lastName}&lt;/div>
+                    &lt;div id="profileNickname">@{this.state.nicknameDetails}&lt;/div>
+                    &lt;div id="profileDescription">{this.state.bio}{this.state.showBio &amp;&amp;
+                    &lt;textarea className="showBioEdit" onChange={e => this.setState({bio: e.target.value})}>{this.state.bio}&lt;/textarea>}
+                        {this.state.showBio &amp;&amp; &lt;div className="editBioBtn" onClick={ () => {this.editBio()}}>Zapisz&lt;/div>}
+                    &lt;/div>
+
+                    {decodeToken(localStorage.getItem('token')).nickname === this.state.nicknameDetails ?
+                        &lt;img className="bio_edit" src={editIcon} onClick={() => {
+                            this.setState({showBio: !this.state.showBio});
+                        }} alt="Avatar"/> : false}
+                &lt;/div>
+                &lt;div id="myPostsProfile">
+                    &lt;div className="blog-">
+                        {this.displayBlogPost(this.state.posts)}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        )
+
+    }
+}
+
+const mapStateToProps = state => ({
+    userNickname: state.userNickname
+});
+
+export default withRouter(connect(mapStateToProps)(Profile));
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Chat.html">Chat</a></li><li><a href="Profile.html">Profile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#ProfilePosts">ProfilePosts</a></li><li><a href="global.html#SignUp">SignUp</a></li><li><a href="global.html#SingleMessage">SingleMessage</a></li><li><a href="global.html#SinglePost">SinglePost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Feb 02 2022 16:07:16 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
