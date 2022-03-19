@@ -7,7 +7,7 @@ import {Switch} from "react-router-dom";
 import Chat from "./components/chat";
 import Profile from "./components/profile";
 import {Route, Redirect} from 'react-router'
-import { isExpired, decodeToken  } from "react-jwt";
+import {isExpired, decodeToken} from "react-jwt";
 
 function App() {
 
@@ -24,7 +24,11 @@ function App() {
     return (
         <div className="mainBackground">
             <div>
-                <Route path="/" exact component={Navbar}/>
+                <Route exact path="/" render={() => (
+                    $auth.isLoggedIn() ? (
+                        <Route path="/" exact component={Navbar}/>
+                    ) : false
+                )}/>
                 <Route path="/" exact component={MainPage}/>
                 <Route path="/" exact component={Chat}/>
                 <Route path="/profile/:nickname" exact component={Navbar}/>
